@@ -1,1 +1,34 @@
 /* You can add global styles to this file, and also import other style files */
+*{
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+input {
+  outline: none;
+  border: 1px solid #f26b08;
+  height: 43px;
+  padding: 5px;
+  transition: 0.2s all ease;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.btn {
+  border: 1px solid #f26b08;
+  background: #f26b08;
+  color: #ffffff;
+  display: inline-block;
+  width: 250px;
+  padding: 10px 0;
+  text-align: center;
+  transition: 0.3s all ease;
+  outline: none;
+  font-size: 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  &:hover{
+    border: 1px solid #f26b08;
+    background: transparent;
+    color: #f26b08;
+  }
+}

@@ -1,0 +1,20 @@
+.notebook{
+  display: flex;
+}
+.nav{
+  width: 385px;
+  flex-shrink: 0;
+  min-height: 100vh;
+  background: linear-gradient(to top left, powderblue, pink);
+  position: relative;
+  padding: 50px 40px;
+}
+.notebook_container{
+  min-height: 100vh;
+  width: calc(100% - 385px);
+  position: relative;
+}
+app-sidebar{
+  display: block;
+  height: 100%;
+}
