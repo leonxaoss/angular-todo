@@ -1,0 +1,12 @@
+<div class="form_block">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form_block">
+      <app-input label="Name" formControlName="name" type="text" placeholder="Enter name"></app-input>
+      <label *ngIf="form.get('name').invalid && form.get('name').touched" class="error-title">
+        <span *ngIf="form.get('name').hasError('required')">Field should not be empty. </span>
+        <span *ngIf="form.get('name').hasError('minlength')">Name should not be less than 5 characters.</span>
+        <span *ngIf="form.get('name').hasError('pattern')">Only latin symbols.</span>
+      </label>
+    </div>
+  </form>
+</div>

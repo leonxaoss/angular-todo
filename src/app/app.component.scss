@@ -12,7 +12,9 @@
 .notebook_container{
   min-height: 100vh;
   width: calc(100% - 385px);
+  padding: 50px 100px;
   position: relative;
+  background: linear-gradient(45deg, rgba(103, 0, 31, .8), rgba(34, 101, 163, .5));
 }
 app-sidebar{
   display: block;
