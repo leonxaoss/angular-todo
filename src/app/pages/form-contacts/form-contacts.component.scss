@@ -1,14 +1,26 @@
 .form_block{
   margin-bottom: 20px;
   position: relative;
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  &--tel{
+    .label_title{
+      width: 100%;
+    }
+  }
+  &--w100{
+    .form_box{
+      width: 100%;
+    }
+  }
   p{
     font-size: 14px;
     margin-bottom: 10px;
   }
   input{
     width: 100%;
-    border: 1px solid #0099FF;
+    border: 1px solid #f26b08;
     border-radius: 5px;
     height: 40px;
     outline: none;
@@ -17,19 +29,22 @@
       border: 1px solid red;
     }
     &.ng-untouched{
-      border: 1px solid #0099FF;
+      border: 1px solid #f26b08;
     }
   }
   textarea{
     width: 100%;
     outline: none;
-    border: 1px solid #0099FF;
+    border: 1px solid #f26b08;
     border-radius: 5px;
     resize: none;
     height: 100px;
     padding: 10px;
     text-indent: 0;
   }
+}
+.form_box{
+  width: calc(50% - 25px);
 }
 .error-title{
   position: absolute;
@@ -40,7 +55,6 @@
   color: red;
 }
 .btn{
-  padding: 10px 80px;
   &[disabled]{
     opacity: 0.7;
     pointer-events: none;
@@ -54,6 +68,7 @@
   font-size: 14px;
   margin-bottom: 10px;
   display: inline-block;
+  font-weight: bolder;
 }
 .form_box{
   display: block;

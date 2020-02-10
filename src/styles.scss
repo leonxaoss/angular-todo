@@ -31,6 +31,7 @@ input {
   font-size: 18px;
   border-radius: 10px;
   cursor: pointer;
+  white-space: nowrap;
   &:hover{
     border: 1px solid #f26b08;
     background: transparent;

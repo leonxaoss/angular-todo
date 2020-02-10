@@ -1,11 +1,45 @@
-<div class="form_block">
+<div class="form_container">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="form_block">
-      <app-input label="Name" formControlName="name" type="text" placeholder="Enter name"></app-input>
-      <label *ngIf="form.get('name').invalid && form.get('name').touched" class="error-title">
-        <span *ngIf="form.get('name').hasError('required')">Field should not be empty. </span>
-        <span *ngIf="form.get('name').hasError('minlength')">Name should not be less than 5 characters.</span>
-        <span *ngIf="form.get('name').hasError('pattern')">Only latin symbols.</span>
+      <div class="form_box">
+        <app-input label="Ім'я" formControlName="name" type="text" placeholder="Введіть ім'я"></app-input>
+        <label *ngIf="form.get('name').invalid && form.get('name').touched" class="error-title">
+          <span *ngIf="form.get('name').hasError('required')">Поле не може бути пустим.</span>
+        </label>
+      </div>
+      <div class="form_box">
+        <app-input label="Прізвище" formControlName="lname" type="text" placeholder="Введіть прізвище"></app-input>
+        <label *ngIf="form.get('lname').invalid && form.get('lname').touched" class="error-title">
+          <span *ngIf="form.get('lname').hasError('required')">Поле не може бути пустим.</span>
+        </label>
+      </div>
+    </div>
+    <div class="form_block form_block--tel">
+      <p class="label_title">Номер телефону</p>
+      <label class="form_box" formArrayName="contacts" *ngFor="let contact of phonesFormArray.controls; let i = index">
+        <input type="tel" [formControlName]="i.toString()" placeholder="Введіть номер телефону">
+        <span class="remove_contact" (click)="removeContact(i)" *ngIf="phonesFormArray.length !== 1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path class="cls-1" d="M24,1.39,22.61,0,12,10.61,1.39,0,0,1.39,10.61,12,0,22.61,1.39,24,12,13.39,22.61,24,24,22.61,13.39,12Z"/>
+          </svg>
+        </span>
+        <label *ngIf="contact.invalid && contact.touched" class="error-title">
+          <span *ngIf="contact.hasError('required')">Поле не може бути пустим. </span>
+        </label>
+      </label>
+    </div>
+    <div class="form_block">
+      <div class="btn" (click)="addContact()">Добавити телефон</div>
+    </div>
+    <div class="form_block form_block--w100">
+      <div class="form_box">
+        <app-input label="Дата народження" formControlName="date" type="date" placeholder=""></app-input>
+      </div>
+    </div>
+    <div class="form_block form_block--w100">
+      <label class="form_box">
+        <label class="label_title">Додаткова інформація</label>
+        <textarea formControlName="more" placeholder="Додаткова інформація"></textarea>
       </label>
     </div>
   </form>
