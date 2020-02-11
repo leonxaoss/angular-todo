@@ -12,7 +12,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/form-contacts/form-contacts.module').then(mod => mod.FormContactsModule)
   },
   {
-    path: 'edit-contact',
+    path: 'edit-contact/:id',
     loadChildren: () => import('./pages/form-contacts/form-contacts.module').then(mod => mod.FormContactsModule)
   },
   {

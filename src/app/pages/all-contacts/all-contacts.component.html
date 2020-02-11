@@ -4,20 +4,21 @@
 </div>
 
 <div class="contact_block">
-  <div class="contact_box contact_id">
+  <div class="contact_box contact_id" *ngFor="let item of data">
     <div class="box_img">
-
     </div>
     <div class="contact_description">
       <h4>
         <span class="name">
-          dsafdas
+          {{item.name}}
         </span>
         <span class="surname">
-          asdasda
+          {{item.lname}}
         </span>
       </h4>
-      <a href="tel:">095909880</a>
+      <a href="tel:{{item.contacts[0]}}">
+        {{item.contacts[0]}}
+      </a>
     </div>
     <div class="more_contact">
       <span class="more_touch"></span>
@@ -25,8 +26,8 @@
       <span class="more_touch"></span>
       <div class="contact_nav">
         <a routerLink="/add-contacts" class="contact_btn contact_btn--show"><span>Переглянути</span></a>
-        <a routerLink="/edit-contact" class="contact_btn contact_btn--edit"><span>Редагувати</span></a>
-        <a class="contact_btn contact_btn--delete"><span>Видалити</span></a>
+        <a routerLink="/edit-contact/{{item.id}}" class="contact_btn contact_btn--edit"><span>Редагувати</span></a>
+        <a class="contact_btn contact_btn--delete" (click)="deleteBlock(item.id)"><span>Видалити</span></a>
       </div>
     </div>
   </div>

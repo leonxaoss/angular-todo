@@ -1,0 +1,32 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "todo": [
+    {
+      "id": 1,
+      "name": "Garik",
+      "lname": "Velikiy",
+      "contacts": [
+        9696588,
+        65555
+      ],
+      "date": "15.02.1996",
+      "more": "more"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
