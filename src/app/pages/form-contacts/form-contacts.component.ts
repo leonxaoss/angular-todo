@@ -47,21 +47,16 @@ export class FormContactsComponent implements OnInit {
       this.formService
         .getById(this.id)
         .subscribe((item: FormInterface) => {
-
           this.form.patchValue ({
             name: item.name,
             lname: item.lname,
             date: item.date,
             more: item.more
           });
-
-          // this.phonesFormArray.patchValue(item.contacts);
-          item.contacts.forEach((it) => {
-            this.phonesFormArray.push(
-              new FormControl(it, Validators.required)
-            );
+          this.phonesFormArray.clear();
+          item.contacts.forEach((phone) => {
+            this.phonesFormArray.push(new FormControl(phone.toString(), Validators.required));
           });
-
         });
     }
   }
@@ -75,8 +70,19 @@ export class FormContactsComponent implements OnInit {
     this.phonesFormArray.removeAt(index);
   }
 
-  navToSections(): void {
+  navToContacts(): void {
     this.router.navigate(['/all-contacts']);
+  }
+
+  onEdit(formData: FormInterface): void {
+    this.formService
+      .updateNode(this.id, formData)
+      .subscribe(
+        (data) => data,
+        (err: ErrorEvent) => console.error(err),
+        () => {
+          this.navToContacts();
+        });
   }
 
   onCreate(formData: FormInterface): void {
@@ -86,7 +92,7 @@ export class FormContactsComponent implements OnInit {
         data => data,
         (err: ErrorEvent) => console.error(err),
         () => {
-          this.navToSections();
+          this.navToContacts();
         });
   }
 
@@ -100,12 +106,10 @@ export class FormContactsComponent implements OnInit {
       more: this.form.value.more
     };
 
-    console.log(this.form.value);
-
     if (this.form.valid) {
       // this.isLeave = false;
       if (this.id) {
-        // this.onEdit(model);
+        this.onEdit(model);
       } else {
         this.onCreate(model);
       }

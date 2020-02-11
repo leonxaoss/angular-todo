@@ -21,6 +21,10 @@ export class FormService {
     return this.http.post<FormInterface>(`http://localhost:3000/todo`, data);
   }
 
+  updateNode(id: number, data: FormInterface): Observable<null> {
+    return this.http.put<null>(`http://localhost:3000/todo/${id}`, data);
+  }
+
   deleteNode(id: number): Observable<null> {
     return this.http.delete<null>(`http://localhost:3000/todo/${id}`);
   }

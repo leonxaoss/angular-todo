@@ -9,11 +9,11 @@
   "todo": [
     {
       "id": 1,
-      "name": "Garik",
+      "name": "Garik2",
       "lname": "Velikiy",
       "contacts": [
-        9696588,
-        65555
+        "9696588",
+        "65555"
       ],
       "date": "15.02.1996",
       "more": "more"
