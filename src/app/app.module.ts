@@ -5,16 +5,26 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './component/sidebar/sidebar.component';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DeleteContactDialogComponent } from './component/delete-contact-dialog/delete-contact-dialog.component';
+import { MatButtonModule, MatDialogModule } from '@angular/material';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent
+    SidebarComponent,
+    DeleteContactDialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatDialogModule,
+    MatButtonModule,
+  ],
+  entryComponents: [
+    DeleteContactDialogComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

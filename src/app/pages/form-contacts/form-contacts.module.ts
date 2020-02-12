@@ -5,18 +5,28 @@ import { FormContactsRoutingModule } from './form-contacts-routing.module';
 import { FormContactsComponent } from './form-contacts.component';
 import { InputComponent } from './component/input/input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LeaveFormDialogComponent } from './component/leave-form-dialog/leave-form-dialog.component';
+import { MatButtonModule, MatDialogModule } from '@angular/material';
+import { NgxMaskModule } from 'ngx-mask';
 
 
 @NgModule({
   declarations: [
     FormContactsComponent,
-    InputComponent
+    InputComponent,
+    LeaveFormDialogComponent
   ],
   imports: [
     CommonModule,
     FormContactsRoutingModule,
     FormsModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+    MatDialogModule,
+    MatButtonModule,
+    NgxMaskModule.forRoot()
+  ],
+  entryComponents: [
+    LeaveFormDialogComponent
+  ],
 })
 export class FormContactsModule { }

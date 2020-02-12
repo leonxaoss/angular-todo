@@ -16,6 +16,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/form-contacts/form-contacts.module').then(mod => mod.FormContactsModule)
   },
   {
+    path: 'details-contact/:id',
+    loadChildren: () => import('./pages/details-contact/details-contact.module').then(mod => mod.DetailsContactModule)
+  },
+  {
     path: '**', redirectTo: 'all-contacts'
   },
   {

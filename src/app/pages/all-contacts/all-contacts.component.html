@@ -1,6 +1,6 @@
-<div class="contact_none notebook_content">
-  <h2>Контактів поки що немає</h2>
-  <p>Скористайтесь кнопкою 'Додати контакт'</p>
+<div class="contact_none notebook_content" >
+  <h2>{{!data.length ? 'Контактів поки що немає' : 'Контакти'}}</h2>
+  <p *ngIf="!data.length">Скористайтесь кнопкою 'Додати контакт'</p>
 </div>
 
 <div class="contact_block">
@@ -17,7 +17,7 @@
         </span>
       </h4>
       <a href="tel:{{item.contacts[0]}}">
-        {{item.contacts[0]}}
+        +380 {{item.contacts[0]}}
       </a>
     </div>
     <div class="more_contact">
@@ -25,7 +25,7 @@
       <span class="more_touch"></span>
       <span class="more_touch"></span>
       <div class="contact_nav">
-        <a routerLink="/add-contacts" class="contact_btn contact_btn--show"><span>Переглянути</span></a>
+        <a routerLink="/details-contact/{{item.id}}" class="contact_btn contact_btn--show"><span>Переглянути</span></a>
         <a routerLink="/edit-contact/{{item.id}}" class="contact_btn contact_btn--edit"><span>Редагувати</span></a>
         <a class="contact_btn contact_btn--delete" (click)="deleteBlock(item.id)"><span>Видалити</span></a>
       </div>

@@ -17,7 +17,7 @@
     <div class="form_block form_block--tel">
       <p class="label_title">Номер телефону</p>
       <label class="form_box" formArrayName="contacts" *ngFor="let contact of phonesFormArray.controls; let i = index">
-        <input type="tel" [formControlName]="i.toString()" placeholder="Введіть номер телефону">
+        <input type="text" [formControlName]="i.toString()" placeholder="Введіть номер телефону" [showMaskTyped]="true" prefix="+380" mask=" (00) 000 00 00">
         <span class="remove_contact" (click)="removeContact(i)" *ngIf="phonesFormArray.length !== 1">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path class="cls-1" d="M24,1.39,22.61,0,12,10.61,1.39,0,0,1.39,10.61,12,0,22.61,1.39,24,12,13.39,22.61,24,24,22.61,13.39,12Z"/>
@@ -25,6 +25,7 @@
         </span>
         <label *ngIf="contact.invalid && contact.touched" class="error-title">
           <span *ngIf="contact.hasError('required')">Поле не може бути пустим. </span>
+          <span *ngIf="contact.hasError('minlength')">Введіть номер телефону.</span>
         </label>
       </label>
     </div>
@@ -44,8 +45,7 @@
     </div>
     <div class="form_block">
       <button class="btn" type="submit">
-<!--        <span>{{!id ? 'Add' : 'Update'}}</span>-->
-        <span>Добавити</span>
+        <span>{{!id ? 'Добавити' : 'Редагувати'}}</span>
       </button>
     </div>
   </form>

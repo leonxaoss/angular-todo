@@ -1,0 +1,46 @@
+
+.contact_info_block{
+
+}
+.box_img{
+  display: block;
+  margin-bottom: 25px;
+}
+.contact_description{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #ffffff;
+  h4{
+    font-weight: bolder;
+    font-size: 25px;
+    margin-bottom: 10px;
+  }
+  .btn{
+    margin-bottom: 10px;
+  }
+}
+
+
+.contact_description_tel {
+  margin-bottom: 10px;
+  a{
+    display: block;
+    margin-bottom: 5px;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
+
+.date_born{
+  font-size: 16px;
+  color: #f26b08;
+  margin-bottom: 10px;
+}
+
+.more_info{
+  color: white;
+  width: 500px;
+  margin-bottom: 25px;
+}

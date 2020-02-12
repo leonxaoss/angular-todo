@@ -18,6 +18,15 @@ input {
   width: 100%;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button{
+  -webkit-appearance: none;
+  margin: 0;
+}
+input{
+  -moz-appearance: textfield;
+}
+
 .btn {
   border: 1px solid #f26b08;
   background: #f26b08;
@@ -38,3 +47,24 @@ input {
     color: #f26b08;
   }
 }
+
+.box_img{
+  width: 100px;
+  height: 100px;
+  border: 2px solid #f26b08;
+  overflow: hidden;
+  background: #ffffff;
+  border-radius: 50%;
+  position: relative;
+  img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 100%;
+    object-fit: cover;
+  }
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

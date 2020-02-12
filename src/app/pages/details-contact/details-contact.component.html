@@ -1,0 +1,30 @@
+<div class="contact_info contact_id">
+  <div class="box_img">
+
+  </div>
+  <div class="contact_description">
+    <h4>
+      <span class="name">
+        {{data.name}}
+      </span>
+      <span class="surname">
+        {{data.lname}}
+      </span>
+    </h4>
+    <h5 class="date_born">
+      <span>
+          {{data.date}}
+      </span>
+    </h5>
+    <div class="contact_description_tel">
+      <a href="tel:{{item}}" *ngFor="let item of data.contacts">
+        {{item}}
+      </a>
+    </div>
+    <p class="more_info">
+      {{data.more}}
+    </p>
+    <a class="btn" routerLink="/edit-contact/{{data.id}}"><span>Редагувати контакт</span></a>
+    <a class="btn" (click)="deleteContact(data.id)"><span>Видалити контакт</span></a>
+  </div>
+</div>

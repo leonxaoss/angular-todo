@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormService } from '../../services/form.service';
 import { FormInterface } from '../../interfaces/form-interface';
+import { MatDialog } from '@angular/material';
+import { DeleteContactDialogComponent } from '../../component/delete-contact-dialog/delete-contact-dialog.component';
 
 @Component({
   selector: 'app-all-contacts',
@@ -11,23 +13,30 @@ export class AllContactsComponent implements OnInit {
 
   data: FormInterface[] = [];
 
-  constructor(private FormSer: FormService) { }
+  constructor(private FormSer: FormService,
+              public dialog: MatDialog) { }
 
   ngOnInit() {
     this.FormSer.getAll().subscribe((response: FormInterface[]) => {
-      // console.log(response);
+      console.log(response);
       this.data = response;
     });
   }
 
   deleteBlock(id: number) {
-    const isDelete = confirm('Do you wont delete block?');
-    if (isDelete) {
-      this.FormSer.deleteNode(id)
-        .subscribe(() => {
-          this.data = this.data.filter(item => item.id !== id);
-        });
-    }
+
+    const dialogRef = this.dialog.open(DeleteContactDialogComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(((result) => {
+        if (result) {
+          this.FormSer.deleteNode(id)
+            .subscribe(() => {
+              this.data = this.data.filter(item => item.id !== id);
+            });
+        }
+      }));
+
   }
 
 }

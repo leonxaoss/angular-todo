@@ -3,6 +3,10 @@ import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@ang
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormInterface } from '../../interfaces/form-interface';
 import { FormService } from '../../services/form.service';
+import { Observable } from 'rxjs';
+import { LeaveFormDialogComponent } from './component/leave-form-dialog/leave-form-dialog.component';
+import { MatDialog } from '@angular/material';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-form-contacts',
@@ -12,6 +16,7 @@ import { FormService } from '../../services/form.service';
 export class FormContactsComponent implements OnInit {
 
   id = +this.activeRoute.snapshot.params.id;
+  isLeave = true;
 
   form: FormGroup = this.formBuilder.group({
     name: [null,
@@ -27,7 +32,10 @@ export class FormContactsComponent implements OnInit {
     date: [ null ],
     more: [ null ],
     contacts: this.formBuilder.array([
-      [null, [Validators.required]]
+      [null, [
+        Validators.required,
+        Validators.minLength(9)
+      ]]
     ]),
   });
   phonesFormArray = this.form.get('contacts') as FormArray;
@@ -36,7 +44,8 @@ export class FormContactsComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private activeRoute: ActivatedRoute,
               private router: Router,
-              private formService: FormService) { }
+              private formService: FormService,
+              public dialog: MatDialog) { }
 
   ngOnInit() {
     this.activeRoute.params
@@ -107,7 +116,7 @@ export class FormContactsComponent implements OnInit {
     };
 
     if (this.form.valid) {
-      // this.isLeave = false;
+      this.isLeave = false;
       if (this.id) {
         this.onEdit(model);
       } else {
@@ -115,6 +124,19 @@ export class FormContactsComponent implements OnInit {
       }
     } else {
       this.form.markAllAsTouched();
+    }
+  }
+
+  canDeactivate(): boolean | Observable<boolean> {
+    if (this.form.dirty && this.isLeave) {
+      const dialogRef = this.dialog.open(LeaveFormDialogComponent, {
+      });
+      return dialogRef.afterClosed().pipe(
+        map((result) => {
+          return result;
+        }));
+    } else {
+      return true;
     }
   }
 
