@@ -9,10 +9,24 @@
   <div class="btn_block">
     <a class="btn" routerLink="/add-contacts"><span>Добавити контакт</span></a>
   </div>
-  <div class="birthday_block">
+  <div class="birthday_block" *ngIf="data.length">
     <h4>Дні народження</h4>
     <div class="birthday_container">
+      <div class="birthday_box" *ngFor="let item of data">
+        <div class="box_img">
 
+        </div>
+        <div class="contact_description">
+          <h4>
+            <span class="name">
+              {{item.name}}
+            </span>
+            <span class="surname">
+              {{item.lname}}
+            </span>
+          </h4>
+        </div>
+      </div>
     </div>
   </div>
 </div>

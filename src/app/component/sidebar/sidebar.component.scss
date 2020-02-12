@@ -20,7 +20,6 @@
   bottom: 50px;
   left: 40px;
   width: calc(100% - 80px);
-  display: none;
 }
 
 .birthday_block--active{
@@ -34,6 +33,9 @@
   display: flex;
   align-items: center;
   margin-bottom: 5px;
+  .box_img{
+    margin-right: 15px;
+  }
 }
 .birthday_box:last-child{
   margin-bottom: 0;
@@ -45,5 +47,11 @@
 
 .birthday_block h4{
   color: #f26b08;
-  margin-bottom: 10px;
+  font-weight: bolder;
+  margin-bottom: 15px;
+}
+.contact_description{
+  h4{
+    margin-bottom: 0;
+  }
 }

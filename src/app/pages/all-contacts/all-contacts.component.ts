@@ -18,7 +18,6 @@ export class AllContactsComponent implements OnInit {
 
   ngOnInit() {
     this.FormSer.getAll().subscribe((response: FormInterface[]) => {
-      console.log(response);
       this.data = response;
     });
   }
