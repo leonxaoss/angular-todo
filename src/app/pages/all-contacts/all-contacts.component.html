@@ -3,6 +3,19 @@
   <p *ngIf="!data.length">Скористайтесь кнопкою 'Додати контакт'</p>
 </div>
 
+<div class="filter">
+  <h3>Групи</h3>
+  <div class="filter_block">
+    <label class="filter_box">
+      <input type="checkbox" (change)="changeQuery($event)" value="Сімя" name="1">
+      <label class="label_title">Сімя</label>
+    </label>
+    <label class="filter_box">
+      <input type="checkbox" (change)="changeQuery($event)" value="Друзі" name="2">
+      <label class="label_title">Друзі</label>
+    </label>
+  </div>
+</div>
 <div class="contact_block">
   <div class="contact_box contact_id" *ngFor="let item of data">
     <div class="box_img">

@@ -125,3 +125,35 @@
     text-decoration: underline;
   }
 }
+.filter{
+  margin-bottom: 50px;
+  h3{
+    font-size: 25px;
+    font-weight: bolder;
+    margin-bottom: 10px;
+  }
+  input{
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+  }
+}
+.filter_block{
+  display: flex;
+  align-items: center;
+}
+.filter_box{
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin-right: 25px;
+  &:last-child{
+    margin-right: 0;
+  }
+}
+.label_title{
+  font-size: 16px;
+  font-weight: bolder;
+  pointer-events: none;
+  user-select: none;
+}
