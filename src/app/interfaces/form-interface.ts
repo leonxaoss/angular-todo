@@ -5,4 +5,5 @@ export interface FormInterface {
   contacts: number[];
   date?: string;
   more?: string;
+  group?: string;
 }

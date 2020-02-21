@@ -16,7 +16,8 @@
         "444544458"
       ],
       "date": "2020-02-05",
-      "more": "фіфівфівф"
+      "more": "фіфівфівф",
+      "group": null
     },
     {
       "id": 2,
@@ -27,7 +28,8 @@
         "959585464"
       ],
       "date": "2020-02-06",
-      "more": "sdfsd"
+      "more": "sdfsd",
+      "group": null
     },
     {
       "id": 3,
@@ -37,7 +39,8 @@
         "955888444"
       ],
       "date": "2020-02-21",
-      "more": "fghfg"
+      "more": "fghfg",
+      "group": null
     },
     {
       "id": 4,
@@ -48,7 +51,8 @@
         "995867897"
       ],
       "date": "2020-02-12",
-      "more": "Huo Hui"
+      "more": "Huo Hui",
+      "group": null
     },
     {
       "id": 5,
@@ -58,7 +62,8 @@
         "435453453"
       ],
       "date": "2342-04-23",
-      "more": "fsfsf"
+      "more": "fsfsf",
+      "group": "Друзі"
     },
     {
       "id": 6,
@@ -69,7 +74,19 @@
         "878797789"
       ],
       "date": "2020-02-06",
-      "more": null
+      "more": null,
+      "group": "Сімя"
+    },
+    {
+      "id": 7,
+      "name": "Gavno",
+      "lname": "Gavno",
+      "contacts": [
+        "342324324"
+      ],
+      "date": "2020-02-07",
+      "more": null,
+      "group": null
     }
   ],
   "comments": [

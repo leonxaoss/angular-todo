@@ -4,6 +4,7 @@ import { FormInterface } from '../../interfaces/form-interface';
 import { MatDialog } from '@angular/material';
 import { DeleteContactDialogComponent } from '../../component/delete-contact-dialog/delete-contact-dialog.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { group } from '@angular/animations';
 
 @Component({
   selector: 'app-all-contacts',
@@ -16,13 +17,44 @@ export class AllContactsComponent implements OnInit {
 
   constructor(private FormSer: FormService,
               private router: Router,
-              private ActivateRoute: ActivatedRoute,
+              private activateRoute: ActivatedRoute,
               public dialog: MatDialog) { }
 
   ngOnInit() {
     this.FormSer.getAll().subscribe((response: FormInterface[]) => {
       this.data = response;
     });
+
+    // const filterQuery = (obj) => {
+    //   return (item) => {
+    //     return obj.group1 === item.group;
+    //   };
+    // };
+
+    this.activateRoute.queryParams
+      .subscribe(params => {
+        // console.log(params);
+        // this.data = this.data.filter((item) => {
+        //   return item.group === params.group1;
+        // });
+
+        // this.FormSer.getAll().subscribe((response: FormInterface[]) => {
+        //   this.data = response;
+        // });
+
+        const add = this.data.filter((item) => {
+          let isElem = false;
+          for (const key in params) {
+            if (params[key] === item.group) {
+              isElem = true;
+            }
+          }
+          return isElem;
+        });
+
+        this.data = add;
+        console.log(add);
+      });
   }
 
   deleteBlock(id: number) {
@@ -45,7 +77,7 @@ export class AllContactsComponent implements OnInit {
     this.router.navigate(
       [],
       {
-        relativeTo: this.ActivateRoute,
+        relativeTo: this.activateRoute,
         queryParams: queryParam,
         queryParamsHandling: 'merge'
       }
