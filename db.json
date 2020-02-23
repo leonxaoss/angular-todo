@@ -52,7 +52,7 @@
       ],
       "date": "2020-02-12",
       "more": "Huo Hui",
-      "group": null
+      "group": "Сімя"
     },
     {
       "id": 5,
@@ -64,18 +64,6 @@
       "date": "2342-04-23",
       "more": "fsfsf",
       "group": "Друзі"
-    },
-    {
-      "id": 6,
-      "name": "jhhkhhj",
-      "lname": "kjhjhkhjkk",
-      "contacts": [
-        "544654564",
-        "878797789"
-      ],
-      "date": "2020-02-06",
-      "more": null,
-      "group": "Сімя"
     },
     {
       "id": 7,

@@ -1,23 +1,23 @@
 <div class="contact_none notebook_content" >
-  <h2>{{!data.length ? 'Контактів поки що немає' : 'Контакти'}}</h2>
-  <p *ngIf="!data.length">Скористайтесь кнопкою 'Додати контакт'</p>
+  <h2>{{!contactsModel.length ? 'Контактів поки що немає' : 'Контакти'}}</h2>
+  <p *ngIf="!contactsModel.length">Скористайтесь кнопкою 'Додати контакт'</p>
 </div>
 
 <div class="filter">
   <h3>Групи</h3>
   <div class="filter_block">
     <label class="filter_box">
-      <input type="checkbox" (change)="changeQuery($event)" value="Сімя" name="1">
+      <input type="checkbox" (change)="changeQuery($event)" value="Сімя" [checked]="queryParams.hasOwnProperty('group1')" name="1">
       <label class="label_title">Сімя</label>
     </label>
     <label class="filter_box">
-      <input type="checkbox" (change)="changeQuery($event)" value="Друзі" name="2">
+      <input type="checkbox" (change)="changeQuery($event)" value="Друзі" [checked]="queryParams.hasOwnProperty('group2')" name="2">
       <label class="label_title">Друзі</label>
     </label>
   </div>
 </div>
 <div class="contact_block">
-  <div class="contact_box contact_id" *ngFor="let item of data">
+  <div class="contact_box contact_id" *ngFor="let item of contactsModel">
     <div class="box_img">
     </div>
     <div class="contact_description">

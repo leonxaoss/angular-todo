@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { FormInterface } from '../../interfaces/form-interface';
@@ -6,17 +6,19 @@ import { FormService } from '../../services/form.service';
 import { Observable } from 'rxjs';
 import { LeaveFormDialogComponent } from './component/leave-form-dialog/leave-form-dialog.component';
 import { MatDialog } from '@angular/material';
-import { map } from 'rxjs/operators';
+import { map, takeWhile } from 'rxjs/operators';
 
 @Component({
   selector: 'app-form-contacts',
   templateUrl: './form-contacts.component.html',
   styleUrls: ['./form-contacts.component.scss']
 })
-export class FormContactsComponent implements OnInit {
+export class FormContactsComponent implements OnInit, OnDestroy {
 
   id = +this.activeRoute.snapshot.params.id;
   isLeave = true;
+  private isObservablesAlive = true;
+
 
   form: FormGroup = this.formBuilder.group({
     name: [null,
@@ -49,12 +51,14 @@ export class FormContactsComponent implements OnInit {
 
   ngOnInit() {
     this.activeRoute.params
+      .pipe(takeWhile(() => this.isObservablesAlive))
       .subscribe((params: Params) => {
         this.id = +params.id;
       });
     if (this.id) {
       this.formService
         .getById(this.id)
+        .pipe(takeWhile(() => this.isObservablesAlive))
         .subscribe((item: FormInterface) => {
           this.form.patchValue ({
             name: item.name,
@@ -68,6 +72,10 @@ export class FormContactsComponent implements OnInit {
           });
         });
     }
+  }
+
+  ngOnDestroy(): void {
+    this.isObservablesAlive = false;
   }
 
   addContact(): void {
@@ -86,6 +94,7 @@ export class FormContactsComponent implements OnInit {
   onEdit(formData: FormInterface): void {
     this.formService
       .updateNode(this.id, formData)
+      .pipe(takeWhile(() => this.isObservablesAlive))
       .subscribe(
         (data) => data,
         (err: ErrorEvent) => console.error(err),
@@ -97,6 +106,7 @@ export class FormContactsComponent implements OnInit {
   onCreate(formData: FormInterface): void {
     this.formService
       .addData(formData)
+      .pipe(takeWhile(() => this.isObservablesAlive))
       .subscribe(
         data => data,
         (err: ErrorEvent) => console.error(err),
