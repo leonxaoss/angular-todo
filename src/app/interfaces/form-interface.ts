@@ -1,7 +1,7 @@
 export interface FormInterface {
   id: number;
   name: string;
-  lname: string;
+  lastName: string;
   contacts: number[];
   date?: string;
   more?: string;

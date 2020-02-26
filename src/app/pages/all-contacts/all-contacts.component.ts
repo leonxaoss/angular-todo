@@ -24,8 +24,6 @@ export class AllContactsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    console.log(this.queryParams);
-
     this.formService.getAll()
       .pipe(takeWhile(() => this.isObservablesAlive))
       .subscribe((response: FormInterface[]) => {
@@ -52,7 +50,6 @@ export class AllContactsComponent implements OnInit, OnDestroy {
     this.activateRoute.queryParams
       .pipe(takeWhile(() => this.isObservablesAlive))
       .subscribe((params: Params) => {
-        console.log(params);
         if (Object.keys(params).length) {
           this.contactsModel = this.contactsModelHelp.filter((item: FormInterface) => {
             let isElem = false;

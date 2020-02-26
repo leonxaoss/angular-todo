@@ -26,13 +26,14 @@ export class FormContactsComponent implements OnInit, OnDestroy {
         Validators.required
       ]
     ],
-    lname: [null,
+    lastName: [null,
       [
         Validators.required
       ]
     ],
     date: [ null ],
     more: [ null ],
+    group: [ null ],
     contacts: this.formBuilder.array([
       [null, [
         Validators.required,
@@ -62,7 +63,7 @@ export class FormContactsComponent implements OnInit, OnDestroy {
         .subscribe((item: FormInterface) => {
           this.form.patchValue ({
             name: item.name,
-            lname: item.lname,
+            lastName: item.lastName,
             date: item.date,
             more: item.more
           });
@@ -119,8 +120,9 @@ export class FormContactsComponent implements OnInit, OnDestroy {
     const model: FormInterface = {
       id: this.id,
       name: this.form.value.name,
-      lname: this.form.value.lname,
+      lastName: this.form.value.lastName,
       contacts: this.form.value.contacts,
+      group: this.form.value.group,
       date: this.form.value.date,
       more: this.form.value.more
     };

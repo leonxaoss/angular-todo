@@ -4,6 +4,26 @@
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  &--radio{
+    justify-content: flex-start;
+    .form_box{
+      width: auto;
+      display: flex;
+      align-items: center;
+      margin-right: 25px;
+      cursor: pointer;
+      input{
+        width: 25px;
+        height: 25px;
+        margin: 0;
+        cursor: pointer;
+      }
+      label{
+        margin-left: 10px;
+        pointer-events: none;
+      }
+    }
+  }
   &--tel{
     .label_title{
       width: 100%;

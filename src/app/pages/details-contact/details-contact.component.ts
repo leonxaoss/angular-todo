@@ -16,7 +16,7 @@ export class DetailsContactComponent implements OnInit {
   data: FormInterface = {
     id: 0,
     name: '',
-    lname: '',
+    lastName: '',
     contacts: [],
     date: '',
     more: ''

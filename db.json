@@ -10,7 +10,7 @@
     {
       "id": 1,
       "name": "Хер",
-      "lname": "Конячий",
+      "lastName": "Конячий",
       "contacts": [
         "909555556",
         "444544458"
@@ -22,7 +22,7 @@
     {
       "id": 2,
       "name": "Pizdyuk",
-      "lname": "Maliyu",
+      "lastName": "Maliyu",
       "contacts": [
         "234242348",
         "959585464"
@@ -34,7 +34,7 @@
     {
       "id": 3,
       "name": "Laino",
-      "lname": "Sobache",
+      "lastName": "Sobache",
       "contacts": [
         "955888444"
       ],
@@ -45,7 +45,7 @@
     {
       "id": 4,
       "name": "Kozel",
-      "lname": "Hui",
+      "lastName": "Hui",
       "contacts": [
         "969146001",
         "995867897"
@@ -57,7 +57,7 @@
     {
       "id": 5,
       "name": "dfgdg",
-      "lname": "dfgdgd",
+      "lastName": "dfgdgd",
       "contacts": [
         "435453453"
       ],
@@ -68,13 +68,25 @@
     {
       "id": 7,
       "name": "Gavno",
-      "lname": "Gavno",
+      "lastName": "Gavno",
       "contacts": [
         "342324324"
       ],
       "date": "2020-02-07",
       "more": null,
       "group": null
+    },
+    {
+      "id": 8,
+      "name": "Pizda",
+      "lastName": "Povna",
+      "contacts": [
+        "345345345",
+        "345345345"
+      ],
+      "group": "Друзі",
+      "date": "2020-02-25",
+      "more": "fhgfh"
     }
   ],
   "comments": [

@@ -8,9 +8,9 @@
         </label>
       </div>
       <div class="form_box">
-        <app-input label="Прізвище" formControlName="lname" type="text" placeholder="Введіть прізвище"></app-input>
-        <label *ngIf="form.get('lname').invalid && form.get('lname').touched" class="error-title">
-          <span *ngIf="form.get('lname').hasError('required')">Поле не може бути пустим.</span>
+        <app-input label="Прізвище" formControlName="lastName" type="text" placeholder="Введіть прізвище"></app-input>
+        <label *ngIf="form.get('lastName').invalid && form.get('lastName').touched" class="error-title">
+          <span *ngIf="form.get('lastName').hasError('required')">Поле не може бути пустим.</span>
         </label>
       </div>
     </div>
@@ -31,6 +31,16 @@
     </div>
     <div class="form_block">
       <div class="btn" (click)="addContact()">Добавити телефон</div>
+    </div>
+    <div class="form_block form_block--radio">
+      <label class="form_box">
+        <input type="radio" formControlName="group" name="group" value="Сімя">
+        <label>Сімя</label>
+      </label>
+      <label class="form_box">
+        <input type="radio" formControlName="group" name="group" value="Друзі">
+        <label>Друзі</label>
+      </label>
     </div>
     <div class="form_block form_block--w100">
       <div class="form_box">
