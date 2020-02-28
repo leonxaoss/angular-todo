@@ -29,7 +29,7 @@ export class AllContactsComponent implements OnInit, OnDestroy {
       .subscribe((response: FormInterface[]) => {
         this.contactsModelHelp = response;
 
-        if (Object.keys(this.queryParams).length) {
+        if (this.queryParams.group1 || this.queryParams.group2) {
           this.contactsModel = response.filter((item: FormInterface) => {
             let isElem = false;
             for (const key in this.queryParams) {
@@ -50,7 +50,7 @@ export class AllContactsComponent implements OnInit, OnDestroy {
     this.activateRoute.queryParams
       .pipe(takeWhile(() => this.isObservablesAlive))
       .subscribe((params: Params) => {
-        if (Object.keys(params).length) {
+        if (params.group1 || params.group2) {
           this.contactsModel = this.contactsModelHelp.filter((item: FormInterface) => {
             let isElem = false;
             for (const key in params) {

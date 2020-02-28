@@ -1,0 +1,17 @@
+<ul class="pagination">
+  <li>
+
+  </li>
+  <li class="page_item" [ngClass]="{'active': currentPage === 1}">
+    <a (click)="setPage(1)" class="page_link">1</a>
+  </li>
+  <li class="page_item" [ngClass]="{'active': currentPage === 2}">
+    <a (click)="setPage(2)" class="page_link">2</a>
+  </li>
+  <li class="page_item" [ngClass]="{'active': currentPage === 3}">
+    <a (click)="setPage(3)" class="page_link">3</a>
+  </li>
+  <li>
+
+  </li>
+</ul>
