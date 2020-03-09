@@ -87,6 +87,18 @@
       "group": "Друзі",
       "date": "2020-02-25",
       "more": "fhgfh"
+    },
+    {
+      "id": 9,
+      "name": "Den ",
+      "lastName": "Chlen",
+      "contacts": [
+        "454353453",
+        "345345345"
+      ],
+      "group": "Друзі",
+      "date": "2020-03-02",
+      "more": "ew"
     }
   ],
   "comments": [

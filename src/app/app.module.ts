@@ -8,6 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DeleteContactDialogComponent } from './component/delete-contact-dialog/delete-contact-dialog.component';
 import { MatButtonModule, MatDialogModule } from '@angular/material';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { MatButtonModule, MatDialogModule } from '@angular/material';
     BrowserAnimationsModule,
     MatDialogModule,
     MatButtonModule,
+    FormsModule
   ],
   entryComponents: [
     DeleteContactDialogComponent

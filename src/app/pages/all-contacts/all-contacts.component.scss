@@ -17,7 +17,7 @@
 
 .contact_box{
   /*width: 24%;*/
-  width: 320px;
+  width: 32%;
   padding: 10px 10px 10px 10px;
   margin: 0 1% 35px 0;
   display: flex;
@@ -156,4 +156,10 @@
   font-weight: bolder;
   pointer-events: none;
   user-select: none;
+}
+
+@media (max-width: 1920px) {
+  .notebook_container{
+    padding: 50px 50px;
+  }
 }

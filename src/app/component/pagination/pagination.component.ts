@@ -1,33 +1,53 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { takeWhile } from 'rxjs/operators';
-import { FormInterface } from '../../interfaces/form-interface';
 
 @Component({
   selector: 'app-pagination',
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.scss']
 })
-export class PaginationComponent implements OnInit, OnDestroy {
+export class PaginationComponent implements OnInit, OnDestroy, OnChanges {
 
-  @Input() items: FormInterface[];
-  @Input() page = 3;
+  @Input() items: Array<any>;
+  @Input() itemInPage: number[];
+  @Input() initialPage = 1;
+  @Output() changePage = new EventEmitter<any>(true);
 
-  currentPage: number;
+  private currentPage: number;
   private isObservablesAlive = true;
+  private totalPage: number;
+  private pages: number[];
+  queryParams = this.activateRoute.snapshot.queryParams;
+  private pageItem: number;
 
   constructor(private router: Router,
               private activateRoute: ActivatedRoute) { }
 
   ngOnInit() {
 
+    if (!this.queryParams.page) {
+      this.setPage(this.initialPage);
+    }
+
     this.activateRoute.queryParams
       .pipe(takeWhile(() => this.isObservablesAlive))
       .subscribe((params: Params) => {
-        console.log(params);
         this.currentPage = +params.page;
+        if ((this.currentPage <= this.pages.length) && (this.currentPage > 0)) {
+          this.changeData();
+        } else {
+          this.setPage(this.initialPage);
+        }
       });
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    this.pageItem = this.itemInPage[0];
 
+    if (changes.items.currentValue !== changes.items.previousValue) {
+      this.calcPage();
+      this.changeData();
+    }
   }
 
   ngOnDestroy(): void {
@@ -45,5 +65,29 @@ export class PaginationComponent implements OnInit, OnDestroy {
         queryParamsHandling: 'merge'
       }
     );
+  }
+
+  calcPage(): void {
+    this.totalPage = Math.ceil(this.items.length / this.pageItem);
+    this.pages = Array.from(Array((this.totalPage + 1) - 1).keys()).map(i => 1 + i);
+  }
+
+  changeData(): void {
+    const startIndex = (this.currentPage - 1) * this.pageItem;
+    let endIndex = startIndex + this.pageItem;
+    if (+this.pageItem > this.items.length) {
+      endIndex = this.items.length;
+    }
+
+    const pageItems = this.items.slice(startIndex, endIndex);
+
+    this.changePage.emit(pageItems);
+  }
+
+  changeItemInPage(event): void {
+    this.pageItem = +event.currentTarget.value;
+    this.calcPage();
+    this.changeData();
+    this.setPage(1);
   }
 }

@@ -45,4 +45,5 @@
     </div>
   </div>
 </div>
-<app-pagination></app-pagination>
+
+<app-pagination [itemInPage]="[2, 4, 7, 10]" [items]="contactsModelHelp" (changePage)="changePage($event)"></app-pagination>

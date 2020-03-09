@@ -29,41 +29,42 @@ export class AllContactsComponent implements OnInit, OnDestroy {
       .subscribe((response: FormInterface[]) => {
         this.contactsModelHelp = response;
 
-        if (this.queryParams.group1 || this.queryParams.group2) {
-          this.contactsModel = response.filter((item: FormInterface) => {
-            let isElem = false;
-            for (const key in this.queryParams) {
-              if (this.queryParams.hasOwnProperty(key) && (this.queryParams[key] === item.group) ) {
-                isElem = true;
-              }
-            }
-            return isElem;
-          });
-        } else {
-          this.contactsModel = response;
-        }
+        // if (this.queryParams.group1 || this.queryParams.group2) {
+        //   this.contactsModel = response.filter((item: FormInterface) => {
+        //     let isElem = false;
+        //     for (const key in this.queryParams) {
+        //       if (this.queryParams.hasOwnProperty(key) && (this.queryParams[key] === item.group) ) {
+        //         isElem = true;
+        //       }
+        //     }
+        //     return isElem;
+        //   });
+        // } else {
+        //   this.contactsModel = response;
+        // }
+
       });
 
 
 
 
-    this.activateRoute.queryParams
-      .pipe(takeWhile(() => this.isObservablesAlive))
-      .subscribe((params: Params) => {
-        if (params.group1 || params.group2) {
-          this.contactsModel = this.contactsModelHelp.filter((item: FormInterface) => {
-            let isElem = false;
-            for (const key in params) {
-              if (params.hasOwnProperty(key) && (params[key] === item.group) ) {
-                isElem = true;
-              }
-            }
-            return isElem;
-          });
-        } else {
-          this.contactsModel = this.contactsModelHelp;
-        }
-      });
+    // this.activateRoute.queryParams
+    //   .pipe(takeWhile(() => this.isObservablesAlive))
+    //   .subscribe((params: Params) => {
+    //     if (params.group1 || params.group2) {
+    //       this.contactsModel = this.contactsModelHelp.filter((item: FormInterface) => {
+    //         let isElem = false;
+    //         for (const key in params) {
+    //           if (params.hasOwnProperty(key) && (params[key] === item.group) ) {
+    //             isElem = true;
+    //           }
+    //         }
+    //         return isElem;
+    //       });
+    //     } else {
+    //       this.contactsModel = this.contactsModelHelp;
+    //     }
+    //   });
 
 
   }
@@ -113,5 +114,9 @@ export class AllContactsComponent implements OnInit, OnDestroy {
 
       this.setQuery(qe);
     }
+  }
+
+  changePage(newItems: FormInterface[]): void {
+      this.contactsModel = newItems;
   }
 }
