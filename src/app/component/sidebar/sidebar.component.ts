@@ -14,7 +14,7 @@ export class SidebarComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.getAll().subscribe((response: UserInterface[]) => {
+    this.userService.getAllUsers().subscribe((response: UserInterface[]) => {
       this.data = response.filter(
         item => (`
         ${new Date(item.date).getMonth().toString()}-

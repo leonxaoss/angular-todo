@@ -58,7 +58,7 @@ export class FormContactsComponent implements OnInit, OnDestroy {
       });
     if (this.id) {
       this.userService
-        .getById(this.id)
+        .getUserById(this.id)
         .pipe(takeWhile(() => this.isObservablesAlive))
         .subscribe((item: UserInterface) => {
           this.form.patchValue ({
@@ -94,7 +94,7 @@ export class FormContactsComponent implements OnInit, OnDestroy {
 
   onEdit(formData: UserInterface): void {
     this.userService
-      .updateNode(this.id, formData)
+      .updateUser(this.id, formData)
       .pipe(takeWhile(() => this.isObservablesAlive))
       .subscribe(
         (data) => data,
@@ -106,7 +106,7 @@ export class FormContactsComponent implements OnInit, OnDestroy {
 
   onCreate(formData: UserInterface): void {
     this.userService
-      .addData(formData)
+      .addUser(formData)
       .pipe(takeWhile(() => this.isObservablesAlive))
       .subscribe(
         data => data,

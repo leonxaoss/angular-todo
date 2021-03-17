@@ -24,7 +24,7 @@ export class AllContactsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.userService.getAll()
+    this.userService.getAllUsers()
       .pipe(takeWhile(() => this.isObservablesAlive))
       .subscribe((response: UserInterface[]) => {
         this.contactsModel = response;
@@ -80,7 +80,7 @@ export class AllContactsComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(((result) => {
         if (result) {
-          this.userService.deleteNode(id)
+          this.userService.deleteUser(id)
             .subscribe(() => {
               this.contactsModel = this.contactsModel.filter(item => item.id !== id);
             });

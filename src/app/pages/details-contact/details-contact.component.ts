@@ -34,7 +34,7 @@ export class DetailsContactComponent implements OnInit {
       });
 
     this.formService
-      .getById(this.id)
+      .getUserById(this.id)
       .subscribe((item: UserInterface) => {
         this.data = item;
       });
@@ -46,7 +46,7 @@ export class DetailsContactComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(((result) => {
       if (result) {
-        this.formService.deleteNode(id).subscribe();
+        this.formService.deleteUser(id).subscribe();
         this.router.navigate(['/all-contacts']);
       }
     }));

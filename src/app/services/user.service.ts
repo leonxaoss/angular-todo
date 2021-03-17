@@ -10,22 +10,22 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<UserInterface[]> {
+  getAllUsers(): Observable<UserInterface[]> {
     return this.http.get<UserInterface[]>('http://localhost:3000/todo');
   }
-  getById(id: number): Observable<UserInterface> {
+  getUserById(id: number): Observable<UserInterface> {
     return this.http.get<UserInterface>(`http://localhost:3000/todo/${id}`);
   }
 
-  addData(data: UserInterface): Observable<UserInterface> {
+  addUser(data: UserInterface): Observable<UserInterface> {
     return this.http.post<UserInterface>(`http://localhost:3000/todo`, data);
   }
 
-  updateNode(id: number, data: UserInterface): Observable<null> {
+  updateUser(id: number, data: UserInterface): Observable<null> {
     return this.http.put<null>(`http://localhost:3000/todo/${id}`, data);
   }
 
-  deleteNode(id: number): Observable<null> {
+  deleteUser(id: number): Observable<null> {
     return this.http.delete<null>(`http://localhost:3000/todo/${id}`);
   }
 }
