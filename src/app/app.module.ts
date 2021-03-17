@@ -7,8 +7,9 @@ import { SidebarComponent } from './component/sidebar/sidebar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DeleteContactDialogComponent } from './component/delete-contact-dialog/delete-contact-dialog.component';
-import { MatButtonModule, MatDialogModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
