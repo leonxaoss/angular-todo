@@ -3,7 +3,7 @@ import { FormService } from '../../services/form.service';
 import { FormInterface } from '../../interfaces/form-interface';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { DeleteContactDialogComponent } from '../../component/delete-contact-dialog/delete-contact-dialog.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-details-contact',

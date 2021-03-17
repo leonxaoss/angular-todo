@@ -6,7 +6,8 @@ import { FormContactsComponent } from './form-contacts.component';
 import { InputComponent } from './component/input/input.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LeaveFormDialogComponent } from './component/leave-form-dialog/leave-form-dialog.component';
-import { MatButtonModule, MatDialogModule } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 import { NgxMaskModule } from 'ngx-mask';
 
 

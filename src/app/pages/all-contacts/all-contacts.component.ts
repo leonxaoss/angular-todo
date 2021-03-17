@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormService } from '../../services/form.service';
 import { FormInterface } from '../../interfaces/form-interface';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { DeleteContactDialogComponent } from '../../component/delete-contact-dialog/delete-contact-dialog.component';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { takeWhile } from 'rxjs/operators';

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { LeaveFormDialogComponent } from './leave-form-dialog.component';
 
@@ -6,7 +6,7 @@ describe('LeaveFormDialogComponent', () => {
   let component: LeaveFormDialogComponent;
   let fixture: ComponentFixture<LeaveFormDialogComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ LeaveFormDialogComponent ]
     })

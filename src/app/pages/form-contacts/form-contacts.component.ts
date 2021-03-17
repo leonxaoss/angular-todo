@@ -5,7 +5,7 @@ import { FormInterface } from '../../interfaces/form-interface';
 import { FormService } from '../../services/form.service';
 import { Observable } from 'rxjs';
 import { LeaveFormDialogComponent } from './component/leave-form-dialog/leave-form-dialog.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 import { map, takeWhile } from 'rxjs/operators';
 
 @Component({
