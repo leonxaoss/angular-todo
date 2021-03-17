@@ -4,18 +4,18 @@ import { CommonModule } from '@angular/common';
 import { AllContactsRoutingModule } from './all-contacts-routing.module';
 import { AllContactsComponent } from './all-contacts.component';
 import { FormsModule } from '@angular/forms';
-import { PaginationComponent } from '../../component/pagination/pagination.component';
+import { PaginationModule } from '../../component/pagination/pagination.module';
 
 
 @NgModule({
   declarations: [
     AllContactsComponent,
-    PaginationComponent
   ],
   imports: [
     CommonModule,
     AllContactsRoutingModule,
-    FormsModule
+    FormsModule,
+    PaginationModule
   ]
 })
 export class AllContactsModule { }
