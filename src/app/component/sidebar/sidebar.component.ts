@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormInterface } from '../../interfaces/form-interface';
-import { FormService } from '../../services/form.service';
+import { UserInterface } from '../../interfaces/user-interface';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,12 +9,12 @@ import { FormService } from '../../services/form.service';
 })
 export class SidebarComponent implements OnInit {
 
-  data: FormInterface[] = [];
+  data: UserInterface[] = [];
 
-  constructor(private FormSer: FormService) { }
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.FormSer.getAll().subscribe((response: FormInterface[]) => {
+    this.userService.getAll().subscribe((response: UserInterface[]) => {
       this.data = response.filter(
         item => (`
         ${new Date(item.date).getMonth().toString()}-

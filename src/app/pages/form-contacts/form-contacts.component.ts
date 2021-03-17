@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { FormInterface } from '../../interfaces/form-interface';
-import { FormService } from '../../services/form.service';
+import { UserInterface } from '../../interfaces/user-interface';
+import { UserService } from '../../services/user.service';
 import { Observable } from 'rxjs';
 import { LeaveFormDialogComponent } from './component/leave-form-dialog/leave-form-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -47,7 +47,7 @@ export class FormContactsComponent implements OnInit, OnDestroy {
   constructor(private formBuilder: FormBuilder,
               private activeRoute: ActivatedRoute,
               private router: Router,
-              private formService: FormService,
+              private userService: UserService,
               public dialog: MatDialog) { }
 
   ngOnInit() {
@@ -57,10 +57,10 @@ export class FormContactsComponent implements OnInit, OnDestroy {
         this.id = +params.id;
       });
     if (this.id) {
-      this.formService
+      this.userService
         .getById(this.id)
         .pipe(takeWhile(() => this.isObservablesAlive))
-        .subscribe((item: FormInterface) => {
+        .subscribe((item: UserInterface) => {
           this.form.patchValue ({
             name: item.name,
             lastName: item.lastName,
@@ -92,8 +92,8 @@ export class FormContactsComponent implements OnInit, OnDestroy {
     this.router.navigate(['/all-contacts']);
   }
 
-  onEdit(formData: FormInterface): void {
-    this.formService
+  onEdit(formData: UserInterface): void {
+    this.userService
       .updateNode(this.id, formData)
       .pipe(takeWhile(() => this.isObservablesAlive))
       .subscribe(
@@ -104,8 +104,8 @@ export class FormContactsComponent implements OnInit, OnDestroy {
         });
   }
 
-  onCreate(formData: FormInterface): void {
-    this.formService
+  onCreate(formData: UserInterface): void {
+    this.userService
       .addData(formData)
       .pipe(takeWhile(() => this.isObservablesAlive))
       .subscribe(
@@ -117,7 +117,13 @@ export class FormContactsComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    const model: FormInterface = {
+
+    if (!this.form.valid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    const model: UserInterface = {
       id: this.id,
       name: this.form.value.name,
       lastName: this.form.value.lastName,
@@ -127,15 +133,11 @@ export class FormContactsComponent implements OnInit, OnDestroy {
       more: this.form.value.more
     };
 
-    if (this.form.valid) {
-      this.isLeave = false;
-      if (this.id) {
-        this.onEdit(model);
-      } else {
-        this.onCreate(model);
-      }
+    this.isLeave = false;
+    if (this.id) {
+      this.onEdit(model);
     } else {
-      this.form.markAllAsTouched();
+      this.onCreate(model);
     }
   }
 

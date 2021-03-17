@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormService } from '../../services/form.service';
-import { FormInterface } from '../../interfaces/form-interface';
+import { UserService } from '../../services/user.service';
+import { UserInterface } from '../../interfaces/user-interface';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { DeleteContactDialogComponent } from '../../component/delete-contact-dialog/delete-contact-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,7 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class DetailsContactComponent implements OnInit {
 
   id = +this.activeRoute.snapshot.params.id;
-  data: FormInterface = {
+  data: UserInterface = {
     id: 0,
     name: '',
     lastName: '',
@@ -22,7 +22,7 @@ export class DetailsContactComponent implements OnInit {
     more: ''
   };
 
-  constructor( private formService: FormService,
+  constructor( private formService: UserService,
                private activeRoute: ActivatedRoute,
                private router: Router,
                public dialog: MatDialog) { }
@@ -35,7 +35,7 @@ export class DetailsContactComponent implements OnInit {
 
     this.formService
       .getById(this.id)
-      .subscribe((item: FormInterface) => {
+      .subscribe((item: UserInterface) => {
         this.data = item;
       });
   }

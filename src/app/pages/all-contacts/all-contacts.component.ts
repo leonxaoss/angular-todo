@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormService } from '../../services/form.service';
-import { FormInterface } from '../../interfaces/form-interface';
+import { UserService } from '../../services/user.service';
+import { UserInterface } from '../../interfaces/user-interface';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteContactDialogComponent } from '../../component/delete-contact-dialog/delete-contact-dialog.component';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -12,25 +12,25 @@ import { takeWhile } from 'rxjs/operators';
   styleUrls: ['./all-contacts.component.scss']
 })
 export class AllContactsComponent implements OnInit, OnDestroy {
-  contactsModel: FormInterface[] = [];
-  contactsModelHelp: FormInterface[] = [];
+  contactsModel: UserInterface[] = [];
+  contactsModelHelp: UserInterface[] = [];
   queryParams = this.activateRoute.snapshot.queryParams;
   private isObservablesAlive = true;
 
-  constructor(private formService: FormService,
+  constructor(private userService: UserService,
               private router: Router,
               private activateRoute: ActivatedRoute,
               public dialog: MatDialog) { }
 
   ngOnInit() {
 
-    this.formService.getAll()
+    this.userService.getAll()
       .pipe(takeWhile(() => this.isObservablesAlive))
-      .subscribe((response: FormInterface[]) => {
-        this.contactsModelHelp = response;
+      .subscribe((response: UserInterface[]) => {
+        this.contactsModel = response;
 
         // if (this.queryParams.group1 || this.queryParams.group2) {
-        //   this.contactsModel = response.filter((item: FormInterface) => {
+        //   this.contactsModel = response.filter((item: UserInterface) => {
         //     let isElem = false;
         //     for (const key in this.queryParams) {
         //       if (this.queryParams.hasOwnProperty(key) && (this.queryParams[key] === item.group) ) {
@@ -52,7 +52,7 @@ export class AllContactsComponent implements OnInit, OnDestroy {
     //   .pipe(takeWhile(() => this.isObservablesAlive))
     //   .subscribe((params: Params) => {
     //     if (params.group1 || params.group2) {
-    //       this.contactsModel = this.contactsModelHelp.filter((item: FormInterface) => {
+    //       this.contactsModel = this.contactsModelHelp.filter((item: UserInterface) => {
     //         let isElem = false;
     //         for (const key in params) {
     //           if (params.hasOwnProperty(key) && (params[key] === item.group) ) {
@@ -80,7 +80,7 @@ export class AllContactsComponent implements OnInit, OnDestroy {
 
     dialogRef.afterClosed().subscribe(((result) => {
         if (result) {
-          this.formService.deleteNode(id)
+          this.userService.deleteNode(id)
             .subscribe(() => {
               this.contactsModel = this.contactsModel.filter(item => item.id !== id);
             });
@@ -116,7 +116,7 @@ export class AllContactsComponent implements OnInit, OnDestroy {
     }
   }
 
-  changePage(newItems: FormInterface[]): void {
+  changePage(newItems: UserInterface[]): void {
       this.contactsModel = newItems;
   }
 }

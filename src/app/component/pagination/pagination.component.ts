@@ -14,10 +14,10 @@ export class PaginationComponent implements OnInit, OnDestroy, OnChanges {
   @Input() initialPage = 1;
   @Output() changePage = new EventEmitter<any>(true);
 
-  private currentPage: number;
+  currentPage: number;
   private isObservablesAlive = true;
-  private totalPage: number;
-  private pages: number[];
+  totalPage: number;
+  pages: number[];
   queryParams = this.activateRoute.snapshot.queryParams;
   private pageItem: number;
 
