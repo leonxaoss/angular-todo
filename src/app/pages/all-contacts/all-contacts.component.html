@@ -6,31 +6,38 @@
 <div class="filter">
   <h3>Групи</h3>
   <div class="filter_block">
-    <label class="filter_box">
-      <input type="checkbox" (change)="changeQuery($event)" value="Сімя" [checked]="queryParams.hasOwnProperty('group1')" name="1">
-      <label class="label_title">Сімя</label>
+<!--    <label class="filter_box">-->
+<!--      <input type="checkbox" (change)="changeFilter($event)" value="Family">-->
+<!--      <label class="label_title">Сімя</label>-->
+<!--    </label>-->
+<!--    <label class="filter_box">-->
+<!--      <input type="checkbox" (change)="changeFilter($event)" value="Friends">-->
+<!--      <label class="label_title">Друзі</label>-->
+<!--    </label>-->
+    <label class="filter_box" *ngFor="let item of groupsArrView">
+      <input type="checkbox" (change)="changeFilter($event)" value="{{item}}">
+      <label class="label_title">{{item}}</label>
     </label>
-    <label class="filter_box">
-      <input type="checkbox" (change)="changeQuery($event)" value="Друзі" [checked]="queryParams.hasOwnProperty('group2')" name="2">
-      <label class="label_title">Друзі</label>
-    </label>
+
   </div>
 </div>
 <div class="contact_block">
-  <div class="contact_box contact_id" *ngFor="let item of contactsModel">
+  <div class="contact_box contact_id" *ngFor="let user of contactsModel | filter:groupsArr">
+<!--  <div class="contact_box contact_id" *ngFor="let item of contactsModel">-->
     <div class="box_img">
+      <img *ngIf="user.image" src="{{user.image}}" alt="">
     </div>
     <div class="contact_description">
       <h4>
         <span class="name">
-          {{item.name}}
+          {{user.name}}
         </span>
         <span class="surname">
-          {{item.lastName}}
+          {{user.lastName}}
         </span>
       </h4>
-      <a href="tel:{{item.contacts[0]}}">
-        +380 {{item.contacts[0]}}
+      <a href="tel:{{user.contacts[0]}}">
+        +380 {{user.contacts[0]}}
       </a>
     </div>
     <div class="more_contact">
@@ -38,9 +45,9 @@
       <span class="more_touch"></span>
       <span class="more_touch"></span>
       <div class="contact_nav">
-        <a routerLink="/details-contact/{{item.id}}" class="contact_btn contact_btn--show"><span>Переглянути</span></a>
-        <a routerLink="/edit-contact/{{item.id}}" class="contact_btn contact_btn--edit"><span>Редагувати</span></a>
-        <a class="contact_btn contact_btn--delete" (click)="deleteBlock(item.id)"><span>Видалити</span></a>
+        <a routerLink="/details-contact/{{user.id}}" class="contact_btn contact_btn--show"><span>Переглянути</span></a>
+        <a routerLink="/edit-contact/{{user.id}}" class="contact_btn contact_btn--edit"><span>Редагувати</span></a>
+        <a class="contact_btn contact_btn--delete" (click)="deleteBlock(user.id)"><span>Видалити</span></a>
       </div>
     </div>
   </div>

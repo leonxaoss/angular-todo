@@ -10,12 +10,17 @@ a{
 }
 input {
   outline: none;
-  border: 1px solid #f26b08;
-  height: 43px;
+  border: 1px solid #FFFFFF;
+  height: 3em;
   padding: 5px;
   transition: 0.2s all ease;
-  border-radius: 10px;
+  border-radius: 0.2em;
   width: 100%;
+}
+
+img, svg{
+  display: block;
+  max-width: 100%;
 }
 
 input::-webkit-outer-spin-button,
@@ -27,31 +32,11 @@ input{
   -moz-appearance: textfield;
 }
 
-.btn {
-  border: 1px solid #f26b08;
-  background: #f26b08;
-  color: #ffffff;
-  display: inline-block;
-  width: 250px;
-  padding: 10px 0;
-  text-align: center;
-  transition: 0.3s all ease;
-  outline: none;
-  font-size: 18px;
-  border-radius: 10px;
-  cursor: pointer;
-  white-space: nowrap;
-  &:hover{
-    border: 1px solid #f26b08;
-    background: transparent;
-    color: #f26b08;
-  }
-}
 
 .box_img{
-  width: 100px;
-  height: 100px;
-  border: 2px solid #f26b08;
+  width: 7em;
+  height: 7em;
+  border: 2px solid #FFFFFF;
   overflow: hidden;
   background: #ffffff;
   border-radius: 50%;
@@ -67,4 +52,10 @@ input{
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+body {
+  margin: 0;
+  font-family: 'Roboto', "Helvetica Neue", sans-serif;
+  font-size: 8vw;
+  color: #ffffff;
+}

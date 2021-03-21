@@ -6,22 +6,40 @@
 .form_box{
   display: block;
   position: relative;
+  &__input{
+    position: relative;
+    width: 100%;
+  }
   input{
     width: 100%;
-    border: 1px solid #f26b08;
-    border-radius: 5px;
-    height: 40px;
+    border: 1px solid #170d71;
+    border-radius: 0.2em;
+    height: 3em;
     outline: none;
     padding: 0 10px;
+    &[type="date"]{
+      &::-webkit-calendar-picker-indicator{
+        opacity: 0;
+        position: absolute;
+        background: transparent;
+        width: 100%;
+        left: 0;
+        top: 0;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        cursor: pointer;
+      }
+    }
   }
 
   textarea{
     width: 100%;
     outline: none;
-    border: 1px solid #f26b08;
+    border: 1px solid #170d71;
     border-radius: 5px;
     resize: none;
-    height: 100px;
+    height: 6em;
     padding: 10px;
     text-indent: 0;
   }
@@ -37,7 +55,7 @@
   &.ng-untouched {
     .form_box {
       input {
-        border: 1px solid #f26b08;
+        border: 1px solid #170d71;
       }
     }
   }
@@ -45,17 +63,17 @@
 
 
 .label_title{
-  font-size: 14px;
-  margin-bottom: 10px;
+  color: #170d71;
+  font-size: 1.2em;
+  margin-bottom: 0.3em;
   display: inline-block;
   font-weight: bolder;
 }
 .error-title{
   position: absolute;
   left: 0;
-  bottom: -2px;
-  transform: translateY(100%);
-  font-size: 11px;
+  top: 100%;
+  font-size: 0.9em;
   color: red;
 }
 

@@ -15,14 +15,16 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 })
 export class InputComponent implements ControlValueAccessor {
 
-  private currentValue: string;
-  onChange: (value: any) => void;
-  onTouched: () => void;
-  disabled: boolean;
+  @Input() type = '';
+  @Input() label = '';
+  @Input() placeholder = '';
+  disabled = false;
+  isDate = (this.type === 'date');
 
-  @Input() type: string;
-  @Input() label: string;
-  @Input() placeholder: string;
+  private currentValue = '';
+
+  onChange: (value: any) => void = () => {};
+  onTouched: () => void = () => {};
 
   writeValue(value: string): void {
     if (value !== null) {
@@ -30,11 +32,11 @@ export class InputComponent implements ControlValueAccessor {
     }
   }
 
-  registerOnChange(onChange: (value: string) => void) {
+  registerOnChange(onChange: (value: string) => void): void {
     this.onChange = onChange;
   }
 
-  registerOnTouched(onTouched: () => void) {
+  registerOnTouched(onTouched: () => void): void {
     this.onTouched = onTouched;
   }
 

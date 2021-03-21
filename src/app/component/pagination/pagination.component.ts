@@ -9,22 +9,22 @@ import { takeWhile } from 'rxjs/operators';
 })
 export class PaginationComponent implements OnInit, OnDestroy, OnChanges {
 
-  @Input() items: Array<any>;
-  @Input() itemInPage: number[];
+  @Input() items = [];
+  @Input() itemInPage = -1;
   @Input() initialPage = 1;
   @Output() changePage = new EventEmitter<any>(true);
 
-  currentPage: number;
+  currentPage = 1;
   private isObservablesAlive = true;
-  totalPage: number;
-  pages: number[];
+  totalPage = 0;
+  pages: number[] = [];
   queryParams = this.activateRoute.snapshot.queryParams;
-  private pageItem: number;
+  private pageItem = 0;
 
   constructor(private router: Router,
               private activateRoute: ActivatedRoute) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
 
     if (!this.queryParams.page) {
       this.setPage(this.initialPage);
@@ -42,7 +42,7 @@ export class PaginationComponent implements OnInit, OnDestroy, OnChanges {
       });
   }
   ngOnChanges(changes: SimpleChanges): void {
-    this.pageItem = this.itemInPage[0];
+    this.pageItem = this.itemInPage;
 
     if (changes.items.currentValue !== changes.items.previousValue) {
       this.calcPage();
@@ -84,7 +84,7 @@ export class PaginationComponent implements OnInit, OnDestroy, OnChanges {
     this.changePage.emit(pageItems);
   }
 
-  changeItemInPage(event): void {
+  changeItemInPage(event: any): void {
     this.pageItem = +event.currentTarget.value;
     this.calcPage();
     this.changeData();

@@ -1,9 +1,10 @@
 export interface UserInterface {
-  id: number;
+  id: string;
   name: string;
   lastName: string;
   contacts: number[];
-  date?: string;
-  more?: string;
+  date: string;
+  more: string;
+  image?: string;
   group?: string;
 }

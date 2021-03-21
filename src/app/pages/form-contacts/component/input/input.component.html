@@ -1,4 +1,6 @@
 <label class="form_box">
   <span class="label_title">{{label}}</span>
-  <input type="{{type}}" placeholder="{{placeholder}}" [disabled]="disabled" [(ngModel)]="value">
+  <span class="form_box__input">
+    <input [type]="type" placeholder="{{placeholder}}" [disabled]="disabled" [(ngModel)]="value">
+  </span>
 </label>

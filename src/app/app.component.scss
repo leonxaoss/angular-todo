@@ -2,19 +2,19 @@
   display: flex;
 }
 .nav{
-  width: 385px;
+  width: 26em;
   flex-shrink: 0;
   min-height: 100vh;
-  background: linear-gradient(to top left, powderblue, pink);
+  background: #170d71;
   position: relative;
-  padding: 50px 40px;
+  padding: 5em 4em;
 }
 .notebook_container{
   min-height: 100vh;
-  width: calc(100% - 385px);
-  padding: 50px 100px;
+  width: calc(100% - 26em);
+  padding: 3em 5em;
   position: relative;
-  background: linear-gradient(45deg, rgba(103, 0, 31, .8), rgba(34, 101, 163, .5));
+  background: #ffffff;
 }
 app-sidebar{
   display: block;

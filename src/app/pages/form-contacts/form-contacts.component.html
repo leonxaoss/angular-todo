@@ -1,16 +1,21 @@
 <div class="form_container">
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div class="form_block">
+      <div class="form_box form_box--w100">
+        <app-upload-img formControlName="image"></app-upload-img>
+      </div>
+    </div>
+    <div class="form_block">
       <div class="form_box">
         <app-input label="Ім'я" formControlName="name" type="text" placeholder="Введіть ім'я"></app-input>
-        <label *ngIf="form.get('name').invalid && form.get('name').touched" class="error-title">
-          <span *ngIf="form.get('name').hasError('required')">Поле не може бути пустим.</span>
+        <label *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="error-title">
+          <span *ngIf="form.get('name')?.hasError('required')">Поле не може бути пустим.</span>
         </label>
       </div>
       <div class="form_box">
         <app-input label="Прізвище" formControlName="lastName" type="text" placeholder="Введіть прізвище"></app-input>
-        <label *ngIf="form.get('lastName').invalid && form.get('lastName').touched" class="error-title">
-          <span *ngIf="form.get('lastName').hasError('required')">Поле не може бути пустим.</span>
+        <label *ngIf="form.get('lastName')?.invalid && form.get('lastName')?.touched" class="error-title">
+          <span *ngIf="form.get('lastName')?.hasError('required')">Поле не може бути пустим.</span>
         </label>
       </div>
     </div>
@@ -29,16 +34,18 @@
         </label>
       </label>
     </div>
-    <div class="form_block">
-      <div class="btn" (click)="addContact()">Добавити телефон</div>
+    <div class="form_block form_block--btn">
+      <app-plain-button classes="btn--blue" (click)="addContact()">
+        Добавити телефон
+      </app-plain-button>
     </div>
     <div class="form_block form_block--radio">
       <label class="form_box">
-        <input type="radio" formControlName="group" name="group" value="Сімя">
+        <input type="radio" formControlName="group" name="group" value="Family">
         <label>Сімя</label>
       </label>
       <label class="form_box">
-        <input type="radio" formControlName="group" name="group" value="Друзі">
+        <input type="radio" formControlName="group" name="group" value="Friends">
         <label>Друзі</label>
       </label>
     </div>
@@ -53,10 +60,10 @@
         <textarea formControlName="more" placeholder="Додаткова інформація"></textarea>
       </label>
     </div>
-    <div class="form_block">
-      <button class="btn" type="submit">
-        <span>{{!id ? 'Добавити' : 'Редагувати'}}</span>
-      </button>
+    <div class="form_block form_block--btn">
+      <app-plain-button classes="btn--blue" [type]="'submit'">
+        {{!id ? 'Добавити' : 'Редагувати'}}
+      </app-plain-button>
     </div>
   </form>
 </div>

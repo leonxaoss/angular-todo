@@ -1,11 +1,11 @@
 .contact_none {
   color: #ffffff;
-  margin-bottom: 50px;
+  margin-bottom: 2em;
   h2{
-    margin-bottom: 10px;
-    color: #f26b08;
-    font-size: 25px;
-    font-weight: bold;
+    margin-bottom: 0.3em;
+    color: #170d71;
+    font-size: 2em;
+    font-weight: 500;
   }
 }
 
@@ -18,51 +18,33 @@
 .contact_box{
   /*width: 24%;*/
   width: 32%;
-  padding: 10px 10px 10px 10px;
-  margin: 0 1% 35px 0;
+  padding: 0.5em;
+  margin: 0 1% 1em 0;
   display: flex;
   align-items: center;
   position: relative;
-  border: 1px solid #f26b08;
-  border-radius: 5px;
+  border: 1px solid #170d71;
+  border-radius: 0.2em;
   .box_img {
     display: block;
     flex-shrink: 0;
-  }
-}
-
-.box_img{
-  display: none;
-  width: 100px;
-  height: 100px;
-  border: 2px solid #f26b08;
-  overflow: hidden;
-  background: #ffffff;
-  border-radius: 50%;
-  position: relative;
-  img{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    max-width: 100%;
-    object-fit: cover;
+    border-color: #170d71;
   }
 }
 
 .contact_description{
-  margin-left: 25px;
+  margin-left: 1em;
   word-break: break-word;
   h4{
-    color: #ffffff;
-    font-size: 20px;
-    margin-bottom: 2px;
+    color: #170d71;
+    font-size: 1.8em;
+    margin-bottom: 0.1em;
     text-overflow: ellipsis;
   }
   a{
-    color: #ffffff;
+    color: #170d71;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 1.2em;
     display: block;
     &:hover{
       text-decoration: underline;
@@ -72,11 +54,11 @@
 
 .more_contact{
   position: absolute;
-  right: 10px;
-  top: 10px;
+  right: 0;
+  top: 0;
   background: rgba(0, 0, 0, 0.8);
-  padding: 10px 5px;
-  border-radius: 5px;
+  padding: 0.5em 0.5em;
+  border-radius: 0.15em;
   color: #ffffff;
   display: flex;
   cursor: pointer;
@@ -94,10 +76,10 @@
 .contact_nav{
   position: absolute;
   top: 0;
-  left: 0;
-  padding: 15px 35px 10px 35px;
+  right: 0;
+  padding: 1.5em;
   background: rgba(0, 0, 0, 0.8);
-  border-radius: 5px;
+  border-radius: 0.2em;
   opacity: 0;
   visibility: hidden;
   transition: 0.3s all ease-in-out;
@@ -112,11 +94,11 @@
   width: auto;
   display: block;
   padding: 0;
-  margin-bottom: 5px;
+  margin-bottom: 0.25em;
   background: none;
   border-radius: 0;
   border: none;
-  font-size: 14px;
+  font-size: 1.1em;
   color: #fff;
   cursor: pointer;
   &:hover{
@@ -126,15 +108,16 @@
   }
 }
 .filter{
-  margin-bottom: 50px;
+  margin-bottom: 2em;
   h3{
-    font-size: 25px;
-    font-weight: bolder;
-    margin-bottom: 10px;
+    font-size: 2em;
+    font-weight: 500;
+    margin-bottom: 0.5em;
+    color: #170d71;
   }
   input{
-    width: 25px;
-    height: 25px;
+    width: 2em;
+    height: 2em;
     cursor: pointer;
   }
 }
@@ -146,20 +129,15 @@
   cursor: pointer;
   display: flex;
   align-items: center;
-  margin-right: 25px;
+  margin-right: 2em;
+  color: #170d71;
   &:last-child{
     margin-right: 0;
   }
 }
 .label_title{
-  font-size: 16px;
-  font-weight: bolder;
+  font-size: 1.2em;
+  font-weight: 500;
   pointer-events: none;
   user-select: none;
-}
-
-@media (max-width: 1920px) {
-  .notebook_container{
-    padding: 50px 50px;
-  }
 }

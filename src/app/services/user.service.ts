@@ -1,31 +1,36 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { UserInterface } from '../interfaces/user-interface';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private store: AngularFirestore) { }
 
-  getAllUsers(): Observable<UserInterface[]> {
-    return this.http.get<UserInterface[]>('http://localhost:3000/todo');
+  getAllUsers(): Observable<any> {
+    return this.store.collection('users').valueChanges({ idField: 'id' });
   }
-  getUserById(id: number): Observable<UserInterface> {
-    return this.http.get<UserInterface>(`http://localhost:3000/todo/${id}`);
-  }
-
-  addUser(data: UserInterface): Observable<UserInterface> {
-    return this.http.post<UserInterface>(`http://localhost:3000/todo`, data);
-  }
-
-  updateUser(id: number, data: UserInterface): Observable<null> {
-    return this.http.put<null>(`http://localhost:3000/todo/${id}`, data);
+  getUserById(id: string): Observable<any> {
+    return this.store.collection('users').doc(id).get().pipe(
+      map(doc => doc.data())
+    );
   }
 
-  deleteUser(id: number): Observable<null> {
-    return this.http.delete<null>(`http://localhost:3000/todo/${id}`);
+  addUser(data: UserInterface): Observable<any> {
+    return from(this.store.collection('users').add(data));
+  }
+
+  updateUser(id: string, data: UserInterface): Observable<any> {
+    return from(this.store.collection('users').doc(id).update(data));
+  }
+
+  deleteUser(id: string): Observable<any> {
+    return from(this.store.collection('users').doc(id).delete());
   }
 }

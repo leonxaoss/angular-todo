@@ -9,6 +9,8 @@ import { LeaveFormDialogComponent } from './component/leave-form-dialog/leave-fo
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NgxMaskModule } from 'ngx-mask';
+import { UploadImgModule } from '../../modules/upload-img/upload-img.module';
+import { ButtonsModule } from '../../modules/button/buttons.module';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { NgxMaskModule } from 'ngx-mask';
     ReactiveFormsModule,
     MatDialogModule,
     MatButtonModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
+    UploadImgModule,
+    ButtonsModule
   ],
   entryComponents: [
     LeaveFormDialogComponent

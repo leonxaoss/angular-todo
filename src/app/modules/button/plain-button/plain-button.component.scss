@@ -1,0 +1,49 @@
+.btn {
+  border: 1px solid #FFFFFF;
+  color: #ffffff;
+  //min-width: 14em;
+  width: 100%;
+  padding: 10px 0;
+  text-align: center;
+  transition: 0.3s all ease;
+  outline: none;
+  font-size: 1.3em;
+  border-radius: 0.2em;
+  cursor: pointer;
+  white-space: nowrap;
+  background: none;
+  position: relative;
+  display: block;
+  span{
+    position: relative;
+  }
+  &:before{
+    content: '';
+    position: absolute;
+    background: #ffffff;
+    top: 0;
+    right: 0;
+    width: 0;
+    left: auto;
+    height: 100%;
+    transition: 0.3s all ease;
+  }
+  &:hover{
+    color: #170d71;
+    &:before{
+      left: 0;
+      right: auto;
+      width: 100%;
+    }
+  }
+  &--blue{
+    color: #170d71;
+    border-color: #170d71;
+    &:before{
+      background: #170d71;
+    }
+    &:hover{
+      color: #FFFFFF;
+    }
+  }
+}

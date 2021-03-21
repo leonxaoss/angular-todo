@@ -1,20 +1,47 @@
 <div class="notebook_nav">
   <h1>Записник</h1>
   <div class="search">
-    <input type="search" placeholder="Введіть дані для пошуку" class="input_search">
+    <input type="search" autocomplete="off" placeholder="Введіть дані для пошуку" class="input_search"
+           [(ngModel)]="searchValue"
+           (focus)="handleFocus()"
+           (blur)="handleBlur()"
+           (input)="handleInput($event)"
+    >
+    <ul class="search__list" *ngIf="isFocus && arrSearch.length || isResults">
+<!--    <ul class="search__list">-->
+<!--      <li class="search__item">-->
+<!--        sadasds a s-->
+<!--      </li>-->
+<!--      <li class="search__item">-->
+<!--        sadasd sa a-->
+<!--      </li>-->
+<!--      <li class="search__item">-->
+<!--        sadasd s a-->
+<!--      </li>-->
+      <li class="search__item" *ngFor="let item of arrSearch" (click)="setSearchItem(item)">
+        {{formatValue(item)}}
+      </li>
+      <li class="search__item search__item--no_results" *ngIf="isResults">
+        Немає контактів
+      </li>
+    </ul>
   </div>
   <div class="btn_block">
-    <a class="btn" routerLink="/all-contacts"><span>Всі контакти</span></a>
+    <a routerLink="/all-contacts">
+      <app-plain-button>Всі контакти</app-plain-button>
+    </a>
   </div>
   <div class="btn_block">
-    <a class="btn" routerLink="/add-contacts"><span>Добавити контакт</span></a>
+    <a class="btn" routerLink="/add-contacts">
+      <app-plain-button>Добавити контакт</app-plain-button>
+    </a>
   </div>
   <div class="birthday_block" *ngIf="data.length">
     <h4>Дні народження</h4>
     <div class="birthday_container">
       <div class="birthday_box" *ngFor="let item of data">
         <div class="box_img">
-
+          <img *ngIf="item.image" src="{{item.image}}" alt="">
         </div>
         <div class="contact_description">
           <h4>

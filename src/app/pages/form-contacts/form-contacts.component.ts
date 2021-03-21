@@ -15,7 +15,7 @@ import { map, takeWhile } from 'rxjs/operators';
 })
 export class FormContactsComponent implements OnInit, OnDestroy {
 
-  id = +this.activeRoute.snapshot.params.id;
+  id = this.activeRoute.snapshot.params.id;
   isLeave = true;
   private isObservablesAlive = true;
 
@@ -34,6 +34,7 @@ export class FormContactsComponent implements OnInit, OnDestroy {
     date: [ null ],
     more: [ null ],
     group: [ null ],
+    image: [''],
     contacts: this.formBuilder.array([
       [null, [
         Validators.required,
@@ -50,11 +51,11 @@ export class FormContactsComponent implements OnInit, OnDestroy {
               private userService: UserService,
               public dialog: MatDialog) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.activeRoute.params
       .pipe(takeWhile(() => this.isObservablesAlive))
       .subscribe((params: Params) => {
-        this.id = +params.id;
+        this.id = params.id;
       });
     if (this.id) {
       this.userService
@@ -65,7 +66,9 @@ export class FormContactsComponent implements OnInit, OnDestroy {
             name: item.name,
             lastName: item.lastName,
             date: item.date,
-            more: item.more
+            more: item.more,
+            image: item.image,
+            group: item.group
           });
           this.phonesFormArray.clear();
           item.contacts.forEach((phone) => {
@@ -105,11 +108,10 @@ export class FormContactsComponent implements OnInit, OnDestroy {
   }
 
   onCreate(formData: UserInterface): void {
-    this.userService
-      .addUser(formData)
+    this.userService.addUser(formData)
       .pipe(takeWhile(() => this.isObservablesAlive))
       .subscribe(
-        data => data,
+        data => console.log(555, data),
         (err: ErrorEvent) => console.error(err),
         () => {
           this.navToContacts();
@@ -124,13 +126,7 @@ export class FormContactsComponent implements OnInit, OnDestroy {
     }
 
     const model: UserInterface = {
-      id: this.id,
-      name: this.form.value.name,
-      lastName: this.form.value.lastName,
-      contacts: this.form.value.contacts,
-      group: this.form.value.group,
-      date: this.form.value.date,
-      more: this.form.value.more
+      ...this.form.value
     };
 
     this.isLeave = false;
@@ -142,6 +138,7 @@ export class FormContactsComponent implements OnInit, OnDestroy {
   }
 
   canDeactivate(): boolean | Observable<boolean> {
+    console.log(this.form);
     if (this.form.dirty && this.isLeave) {
       const dialogRef = this.dialog.open(LeaveFormDialogComponent, {
       });

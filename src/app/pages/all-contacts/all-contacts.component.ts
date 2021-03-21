@@ -12,8 +12,10 @@ import { takeWhile } from 'rxjs/operators';
   styleUrls: ['./all-contacts.component.scss']
 })
 export class AllContactsComponent implements OnInit, OnDestroy {
-  contactsModel: UserInterface[] = [];
+  contactsModel: UserInterface[] = [] as UserInterface[];
   contactsModelHelp: UserInterface[] = [];
+  groupsArr: string[] = [];
+  groupsArrView = new Set();
   queryParams = this.activateRoute.snapshot.queryParams;
   private isObservablesAlive = true;
 
@@ -22,12 +24,18 @@ export class AllContactsComponent implements OnInit, OnDestroy {
               private activateRoute: ActivatedRoute,
               public dialog: MatDialog) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
 
     this.userService.getAllUsers()
       .pipe(takeWhile(() => this.isObservablesAlive))
       .subscribe((response: UserInterface[]) => {
         this.contactsModel = response;
+        this.contactsModel.forEach(item => {
+          if (item.group) {
+            this.groupsArrView.add(item.group);
+          }
+        });
+        console.log(this.groupsArrView);
 
         // if (this.queryParams.group1 || this.queryParams.group2) {
         //   this.contactsModel = response.filter((item: UserInterface) => {
@@ -51,18 +59,10 @@ export class AllContactsComponent implements OnInit, OnDestroy {
     // this.activateRoute.queryParams
     //   .pipe(takeWhile(() => this.isObservablesAlive))
     //   .subscribe((params: Params) => {
-    //     if (params.group1 || params.group2) {
-    //       this.contactsModel = this.contactsModelHelp.filter((item: UserInterface) => {
-    //         let isElem = false;
-    //         for (const key in params) {
-    //           if (params.hasOwnProperty(key) && (params[key] === item.group) ) {
-    //             isElem = true;
-    //           }
-    //         }
-    //         return isElem;
-    //       });
-    //     } else {
-    //       this.contactsModel = this.contactsModelHelp;
+    //     // console.log(params.groups);
+    //     if (params.groups) {
+    //       this.groupsArr = params.groups.split(',');
+    //       // console.log(this.groupsArr);
     //     }
     //   });
 
@@ -73,7 +73,7 @@ export class AllContactsComponent implements OnInit, OnDestroy {
     this.isObservablesAlive = false;
   }
 
-  deleteBlock(id: number) {
+  deleteBlock(id: string): void {
 
     const dialogRef = this.dialog.open(DeleteContactDialogComponent, {
     });
@@ -89,32 +89,48 @@ export class AllContactsComponent implements OnInit, OnDestroy {
 
   }
 
-  setQuery(queryParam: object): void {
-    this.router.navigate(
-      [],
-      {
-        relativeTo: this.activateRoute,
-        queryParams: queryParam,
-        queryParamsHandling: 'merge'
-      }
-    );
-  }
-
-  changeQuery(event): void {
+  changeFilter(event: any): void {
     const value: string = event.currentTarget.value;
-    const key: string = 'group' + event.currentTarget.name;
-    const qe = {};
+    const arr = new Map();
+    this.groupsArr.forEach(item => {
+      arr.set(item, item);
+    });
 
     if (event.currentTarget.checked) {
-      qe[key] = value;
-
-      this.setQuery(qe);
+      arr.set(value, value);
     } else {
-      qe[key] = null;
-
-      this.setQuery(qe);
+      arr.delete(value);
     }
+
+    this.groupsArr = Array.from(arr.keys());
+    console.log(this.groupsArr);
   }
+
+  // setQuery(queryParam: object): void {
+  //   this.router.navigate(
+  //     [],
+  //     {
+  //       relativeTo: this.activateRoute,
+  //       queryParams: queryParam,
+  //       queryParamsHandling: 'merge'
+  //     }
+  //   );
+  // }
+  //
+  // changeQuery(event: any): void {
+  //   const value: string = event.currentTarget.value;
+  //   const qe = {
+  //     groups: 'Family,Friend'
+  //   };
+  //   console.log(value);
+  //
+  //   if (event.currentTarget.checked) {
+  //     this.setQuery(qe);
+  //   } else {
+  //     // qe[key] = null;
+  //     this.setQuery(qe);
+  //   }
+  // }
 
   changePage(newItems: UserInterface[]): void {
       this.contactsModel = newItems;

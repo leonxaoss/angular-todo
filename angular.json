@@ -1,13 +1,19 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "f1b6c185-51f9-4515-931a-68f437f78ba9"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "todo": {
+    "to-do": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
         }
       },
       "root": "",
@@ -17,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/todo",
+            "outputPath": "dist/to-do",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -29,7 +35,6 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
-              "node_modules/reset-css/reset.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -52,13 +57,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
                 }
               ]
             }
@@ -67,18 +72,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "todo:build"
+            "browserTarget": "to-do:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "todo:build:production"
+              "browserTarget": "to-do:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "todo:build"
+            "browserTarget": "to-do:build"
           }
         },
         "test": {
@@ -94,6 +99,7 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "node_modules/reset-css/reset.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -116,19 +122,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "todo:serve"
+            "devServerTarget": "to-do:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "todo:serve:production"
+              "devServerTarget": "to-do:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "todo",
-  "cli": {
-    "analytics": "228bd20d-26cc-4366-a7d1-d4601c0c6b45"
-  }
+  "defaultProject": "to-do"
 }

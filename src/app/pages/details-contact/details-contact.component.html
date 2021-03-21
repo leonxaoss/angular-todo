@@ -1,6 +1,6 @@
 <div class="contact_info contact_id">
   <div class="box_img">
-
+    <img *ngIf="data.image" src="{{data.image}}" alt="">
   </div>
   <div class="contact_description">
     <h4>
@@ -24,7 +24,14 @@
     <p class="more_info">
       {{data.more}}
     </p>
-    <a class="btn" routerLink="/edit-contact/{{data.id}}"><span>Редагувати контакт</span></a>
-    <a class="btn" (click)="deleteContact(data.id)"><span>Видалити контакт</span></a>
+    <a class="btn" routerLink="/add-contacts">
+
+    </a>
+  </div>
+  <div class="contact_info__btn">
+    <a routerLink="/edit-contact/{{id}}">
+      <app-plain-button classes="btn--blue">Редагувати контакт</app-plain-button>
+    </a>
+    <app-plain-button classes="btn--blue">Видалити контакт</app-plain-button>
   </div>
 </div>
