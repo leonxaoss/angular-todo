@@ -32,6 +32,7 @@
     <a routerLink="/edit-contact/{{id}}">
       <app-plain-button classes="btn--blue">Редагувати контакт</app-plain-button>
     </a>
-    <app-plain-button classes="btn--blue">Видалити контакт</app-plain-button>
+    <app-plain-button (click)="deleteContact(id)" classes="btn--blue">Видалити контакт</app-plain-button>
   </div>
 </div>
+<app-loader [local]="true" [showLoader]="showLoader"></app-loader>

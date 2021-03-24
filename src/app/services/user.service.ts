@@ -27,6 +27,7 @@ export class UserService {
   }
 
   updateUser(id: string, data: UserInterface): Observable<any> {
+
     return from(this.store.collection('users').doc(id).update(data));
   }
 

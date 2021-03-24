@@ -82,7 +82,7 @@ export class SidebarComponent implements OnInit {
   }
 
   formatValue(item: UserInterface): string {
-    return item.lastName + ' ' + item.name;
+    return item.name + ' ' + item.lastName;
   }
 
   clearSearch(): void {

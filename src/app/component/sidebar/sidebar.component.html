@@ -8,16 +8,6 @@
            (input)="handleInput($event)"
     >
     <ul class="search__list" *ngIf="isFocus && arrSearch.length || isResults">
-<!--    <ul class="search__list">-->
-<!--      <li class="search__item">-->
-<!--        sadasds a s-->
-<!--      </li>-->
-<!--      <li class="search__item">-->
-<!--        sadasd sa a-->
-<!--      </li>-->
-<!--      <li class="search__item">-->
-<!--        sadasd s a-->
-<!--      </li>-->
       <li class="search__item" *ngFor="let item of arrSearch" (click)="setSearchItem(item)">
         {{formatValue(item)}}
       </li>
@@ -34,6 +24,11 @@
   <div class="btn_block">
     <a class="btn" routerLink="/add-contacts">
       <app-plain-button>Добавити контакт</app-plain-button>
+    </a>
+  </div>
+  <div class="btn_block">
+    <a class="btn" routerLink="/pag">
+      Pagination
     </a>
   </div>
   <div class="birthday_block" *ngIf="data.length">

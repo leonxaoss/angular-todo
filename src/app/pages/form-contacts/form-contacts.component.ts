@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { LeaveFormDialogComponent } from './component/leave-form-dialog/leave-form-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { map, takeWhile } from 'rxjs/operators';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-form-contacts',
@@ -18,6 +19,7 @@ export class FormContactsComponent implements OnInit, OnDestroy {
   id = this.activeRoute.snapshot.params.id;
   isLeave = true;
   private isObservablesAlive = true;
+  showLoader = false;
 
 
   form: FormGroup = this.formBuilder.group({
@@ -49,33 +51,40 @@ export class FormContactsComponent implements OnInit, OnDestroy {
               private activeRoute: ActivatedRoute,
               private router: Router,
               private userService: UserService,
-              public dialog: MatDialog) { }
+              private dialog: MatDialog,
+              private alertService: AlertService,
+              ) { }
 
   ngOnInit(): void {
+    this.showLoader = true;
     this.activeRoute.params
       .pipe(takeWhile(() => this.isObservablesAlive))
       .subscribe((params: Params) => {
         this.id = params.id;
       });
-    if (this.id) {
-      this.userService
-        .getUserById(this.id)
-        .pipe(takeWhile(() => this.isObservablesAlive))
-        .subscribe((item: UserInterface) => {
-          this.form.patchValue ({
-            name: item.name,
-            lastName: item.lastName,
-            date: item.date,
-            more: item.more,
-            image: item.image,
-            group: item.group
-          });
-          this.phonesFormArray.clear();
-          item.contacts.forEach((phone) => {
-            this.phonesFormArray.push(new FormControl(phone.toString(), Validators.required));
-          });
-        });
+    console.log(this.form);
+    if (!this.id) {
+      this.showLoader = false;
+      return;
     }
+    this.userService
+      .getUserById(this.id)
+      .pipe(takeWhile(() => this.isObservablesAlive))
+      .subscribe((item: UserInterface) => {
+        this.form.patchValue ({
+          name: item.name,
+          lastName: item.lastName,
+          date: item.date,
+          more: item.more,
+          image: item.image,
+          group: item.group
+        });
+        this.phonesFormArray.clear();
+        item.contacts.forEach((phone) => {
+          this.phonesFormArray.push(new FormControl(phone.toString(), Validators.required));
+        });
+        this.showLoader = false;
+      });
   }
 
   ngOnDestroy(): void {
@@ -96,22 +105,31 @@ export class FormContactsComponent implements OnInit, OnDestroy {
   }
 
   onEdit(formData: UserInterface): void {
+    this.showLoader = true;
     this.userService
       .updateUser(this.id, formData)
       .pipe(takeWhile(() => this.isObservablesAlive))
       .subscribe(
-        (data) => data,
-        (err: ErrorEvent) => console.error(err),
+        (data) => {
+          this.showLoader = false;
+          this.alertService.showMessage({text: 'Контакт успішно редагований', type: 'success'});
+        },
+        (err: ErrorEvent) => console.error(666, err),
         () => {
           this.navToContacts();
         });
   }
 
   onCreate(formData: UserInterface): void {
+    this.showLoader = true;
     this.userService.addUser(formData)
       .pipe(takeWhile(() => this.isObservablesAlive))
       .subscribe(
-        data => console.log(555, data),
+        data => {
+          this.showLoader = false;
+          this.alertService.showMessage({text: 'Контакт успішно створений', type: 'success'});
+          console.log(555, data);
+        },
         (err: ErrorEvent) => console.error(err),
         () => {
           this.navToContacts();
@@ -138,7 +156,6 @@ export class FormContactsComponent implements OnInit, OnDestroy {
   }
 
   canDeactivate(): boolean | Observable<boolean> {
-    console.log(this.form);
     if (this.form.dirty && this.isLeave) {
       const dialogRef = this.dialog.open(LeaveFormDialogComponent, {
       });

@@ -14,6 +14,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 import { ButtonsModule } from './modules/button/buttons.module';
+import { AlertModule } from './modules/alert/alert.module';
 
 @NgModule({
   declarations: [
@@ -21,18 +22,19 @@ import { ButtonsModule } from './modules/button/buttons.module';
     SidebarComponent,
     DeleteContactDialogComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    MatDialogModule,
-    MatButtonModule,
-    FormsModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
-    ButtonsModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        MatDialogModule,
+        MatButtonModule,
+        FormsModule,
+        AngularFireModule.initializeApp(environment.firebase),
+        AngularFirestoreModule,
+        ButtonsModule,
+        AlertModule
+    ],
   entryComponents: [
     DeleteContactDialogComponent
   ],

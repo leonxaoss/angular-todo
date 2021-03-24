@@ -3,8 +3,9 @@ import { UserService } from '../../services/user.service';
 import { UserInterface } from '../../interfaces/user-interface';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteContactDialogComponent } from '../../component/delete-contact-dialog/delete-contact-dialog.component';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { takeWhile } from 'rxjs/operators';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-all-contacts',
@@ -13,60 +14,37 @@ import { takeWhile } from 'rxjs/operators';
 })
 export class AllContactsComponent implements OnInit, OnDestroy {
   contactsModel: UserInterface[] = [] as UserInterface[];
+  contactsModelFilter: UserInterface[] = [];
   contactsModelHelp: UserInterface[] = [];
   groupsArr: string[] = [];
   groupsArrView = new Set();
   queryParams = this.activateRoute.snapshot.queryParams;
   private isObservablesAlive = true;
+  showLoader = false;
 
   constructor(private userService: UserService,
               private router: Router,
               private activateRoute: ActivatedRoute,
-              public dialog: MatDialog) { }
+              public dialog: MatDialog,
+              private alertService: AlertService,
+              ) { }
 
   ngOnInit(): void {
-
+    this.showLoader = true;
     this.userService.getAllUsers()
       .pipe(takeWhile(() => this.isObservablesAlive))
       .subscribe((response: UserInterface[]) => {
         this.contactsModel = response;
+        this.contactsModelFilter = response;
+        this.contactsModelHelp = response;
         this.contactsModel.forEach(item => {
           if (item.group) {
             this.groupsArrView.add(item.group);
           }
+          this.showLoader = false;
         });
         console.log(this.groupsArrView);
-
-        // if (this.queryParams.group1 || this.queryParams.group2) {
-        //   this.contactsModel = response.filter((item: UserInterface) => {
-        //     let isElem = false;
-        //     for (const key in this.queryParams) {
-        //       if (this.queryParams.hasOwnProperty(key) && (this.queryParams[key] === item.group) ) {
-        //         isElem = true;
-        //       }
-        //     }
-        //     return isElem;
-        //   });
-        // } else {
-        //   this.contactsModel = response;
-        // }
-
       });
-
-
-
-
-    // this.activateRoute.queryParams
-    //   .pipe(takeWhile(() => this.isObservablesAlive))
-    //   .subscribe((params: Params) => {
-    //     // console.log(params.groups);
-    //     if (params.groups) {
-    //       this.groupsArr = params.groups.split(',');
-    //       // console.log(this.groupsArr);
-    //     }
-    //   });
-
-
   }
 
   ngOnDestroy(): void {
@@ -82,6 +60,7 @@ export class AllContactsComponent implements OnInit, OnDestroy {
         if (result) {
           this.userService.deleteUser(id)
             .subscribe(() => {
+              this.alertService.showMessage({text: 'Контакт успішно видалений', type: 'success'});
               this.contactsModel = this.contactsModel.filter(item => item.id !== id);
             });
         }
@@ -103,7 +82,16 @@ export class AllContactsComponent implements OnInit, OnDestroy {
     }
 
     this.groupsArr = Array.from(arr.keys());
-    console.log(this.groupsArr);
+    // console.log(this.groupsArr);
+    this.contactsModelFilter = this.filterArray();
+  }
+
+  filterArray(): UserInterface[] {
+    if (!this.groupsArr.length) {
+      return this.contactsModel;
+    }
+    return this.contactsModel
+      .filter((user: UserInterface) => user.group ? this.groupsArr.includes(user.group) : false);
   }
 
   // setQuery(queryParam: object): void {
@@ -133,6 +121,6 @@ export class AllContactsComponent implements OnInit, OnDestroy {
   // }
 
   changePage(newItems: UserInterface[]): void {
-      this.contactsModel = newItems;
+      this.contactsModelHelp = newItems;
   }
 }

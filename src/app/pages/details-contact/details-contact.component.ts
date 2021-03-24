@@ -5,6 +5,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { DeleteContactDialogComponent } from '../../component/delete-contact-dialog/delete-contact-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { switchMap, takeWhile } from 'rxjs/operators';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-details-contact',
@@ -16,13 +17,17 @@ export class DetailsContactComponent implements OnInit, OnDestroy {
   id = this.activeRoute.snapshot.params.id;
   data: UserInterface = {} as UserInterface;
   isObservablesAlive = true;
+  showLoader = false;
 
   constructor( private formService: UserService,
                private activeRoute: ActivatedRoute,
                private router: Router,
-               public dialog: MatDialog) { }
+               private dialog: MatDialog,
+               private alertService: AlertService,
+               ) { }
 
   ngOnInit(): void {
+    this.showLoader = true;
     this.activeRoute.params
       .pipe(
         switchMap(params => this.formService.getUserById(params.id)),
@@ -30,6 +35,7 @@ export class DetailsContactComponent implements OnInit, OnDestroy {
       )
       .subscribe((item: UserInterface) => {
         // this.id = params.id;
+        this.showLoader = false;
         console.log(item);
         this.data = item;
       });
@@ -50,8 +56,13 @@ export class DetailsContactComponent implements OnInit, OnDestroy {
       .pipe(takeWhile(() => this.isObservablesAlive))
       .subscribe(((result) => {
         if (result) {
-          this.formService.deleteUser(id).subscribe();
-          this.router.navigate(['/all-contacts']);
+          this.showLoader = true;
+          this.formService.deleteUser(id)
+            .subscribe(res => {
+              this.showLoader = false;
+              this.alertService.showMessage({text: 'Контакт успішно видалений', type: 'success'});
+              this.router.navigate(['/all-contacts']);
+            });
         }
     }));
   }

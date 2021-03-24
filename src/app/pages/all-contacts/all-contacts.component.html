@@ -6,24 +6,15 @@
 <div class="filter">
   <h3>Групи</h3>
   <div class="filter_block">
-<!--    <label class="filter_box">-->
-<!--      <input type="checkbox" (change)="changeFilter($event)" value="Family">-->
-<!--      <label class="label_title">Сімя</label>-->
-<!--    </label>-->
-<!--    <label class="filter_box">-->
-<!--      <input type="checkbox" (change)="changeFilter($event)" value="Friends">-->
-<!--      <label class="label_title">Друзі</label>-->
-<!--    </label>-->
     <label class="filter_box" *ngFor="let item of groupsArrView">
       <input type="checkbox" (change)="changeFilter($event)" value="{{item}}">
       <label class="label_title">{{item}}</label>
     </label>
-
   </div>
 </div>
 <div class="contact_block">
-  <div class="contact_box contact_id" *ngFor="let user of contactsModel | filter:groupsArr">
-<!--  <div class="contact_box contact_id" *ngFor="let item of contactsModel">-->
+<!--  <div class="contact_box contact_id" *ngFor="let user of contactsModel | filter:groupsArr">-->
+  <div class="contact_box contact_id" *ngFor="let user of contactsModelHelp">
     <div class="box_img">
       <img *ngIf="user.image" src="{{user.image}}" alt="">
     </div>
@@ -53,4 +44,6 @@
   </div>
 </div>
 
-<!--<app-pagination [itemInPage]="[2, 4, 7, 10]" [items]="contactsModelHelp" (changePage)="changePage($event)"></app-pagination>-->
+<app-pagination [itemsInPage]="[2, 5, 10]" [itemsArr]="contactsModelFilter" (changePage)="changePage($event)"></app-pagination>
+
+<app-loader [local]="true" [showLoader]="showLoader"></app-loader>

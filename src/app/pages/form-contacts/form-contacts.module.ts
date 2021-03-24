@@ -11,6 +11,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { NgxMaskModule } from 'ngx-mask';
 import { UploadImgModule } from '../../modules/upload-img/upload-img.module';
 import { ButtonsModule } from '../../modules/button/buttons.module';
+import { LoaderModule } from '../../modules/loader/loader.module';
 
 
 @NgModule({
@@ -19,17 +20,18 @@ import { ButtonsModule } from '../../modules/button/buttons.module';
     InputComponent,
     LeaveFormDialogComponent
   ],
-  imports: [
-    CommonModule,
-    FormContactsRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    MatDialogModule,
-    MatButtonModule,
-    NgxMaskModule.forRoot(),
-    UploadImgModule,
-    ButtonsModule
-  ],
+    imports: [
+        CommonModule,
+        FormContactsRoutingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        MatDialogModule,
+        MatButtonModule,
+        NgxMaskModule.forRoot(),
+        UploadImgModule,
+        ButtonsModule,
+        LoaderModule
+    ],
   entryComponents: [
     LeaveFormDialogComponent
   ],

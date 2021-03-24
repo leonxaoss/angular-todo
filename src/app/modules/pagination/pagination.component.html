@@ -1,0 +1,25 @@
+<ul class="pagination" *ngIf="pagesNumbers.length > 1">
+  <li class="page_item" [ngClass]="{'disable': currentPage === 1}">
+    <a [routerLink]="currentUrl" [queryParams]="{ page: 1 }" queryParamsHandling="merge" class="page_link" title="first"> << </a>
+  </li>
+  <li class="page_item" [ngClass]="{'disable': currentPage === 1}">
+    <a [routerLink]="currentUrl" [queryParams]="{ page: currentPage - 1 }" queryParamsHandling="merge" class="page_link" title="prev"> < </a>
+  </li>
+  <li class="page_item" *ngFor="let item of pagesNumbers;" [ngClass]="{'active': currentPage === item}">
+    <a [routerLink]="currentUrl" [queryParams]="{ page: item }" queryParamsHandling="merge" class="page_link">{{item}}</a>
+  </li>
+  <li class="page_item" [ngClass]="{'disable': currentPage === totalPage}">
+    <a [routerLink]="currentUrl" [queryParams]="{ page: currentPage + 1 }" queryParamsHandling="merge" class="page_link" title="next"> > </a>
+  </li>
+  <li class="page_item" [ngClass]="{'disable': currentPage === totalPage}">
+    <a [routerLink]="currentUrl" [queryParams]="{ page: totalPage }" queryParamsHandling="merge" class="page_link" title="last"> >> </a>
+  </li>
+</ul>
+<div class="item_page">
+  <p>Показувати на стоінці</p>
+  <label>
+    <select (change)="changeItemInPage($event)">
+      <option *ngFor="let item of itemsInPage;"  [value]="item" >{{item}}</option>
+    </select>
+  </label>
+</div>

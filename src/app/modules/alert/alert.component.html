@@ -1,0 +1,6 @@
+<div class="alert" #alert>
+  <div class="alert__message alert__message--{{item.type}}" *ngFor="let item of arrayMessage">
+    <p>{{item.text}}</p>
+    <div class="alert__close" (click)="removeMessage(item.id)"></div>
+  </div>
+</div>

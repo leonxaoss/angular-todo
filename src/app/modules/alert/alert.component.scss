@@ -1,0 +1,47 @@
+.alert{
+  font-size: 4vw;
+  position: fixed;
+  width: 5em;
+  right: 0.3em;
+  bottom: 0.3em;
+  pointer-events: none;
+  z-index: 10;
+  &__message{
+    pointer-events: visible;
+    background: #0099FF;
+    font-size: 0.3em;
+    padding: 0.5em;
+    margin-bottom: 0.1em;
+    position: relative;
+    border: 1px solid #0B0C0C;
+    font: {
+      family: 'Roboto', sans-serif;
+      weight: normal;
+    };
+    &--success{
+      background: #00CF2C;
+    }
+    &--error{
+      background: #d01f25;
+    }
+    &--warning{
+      background: rgb(214, 205, 21);
+    }
+    p{
+      font-size: 0.7em;
+      margin: 0;
+      padding-right: 1em;
+    }
+  }
+  &__close{
+    cursor: pointer;
+    width: 0.8em;
+    height: 0.8em;
+    position: absolute;
+    right: 0.2em;
+    top: 50%;
+    transform: translateY(-50%);
+    //background: url('./src/assets/img/close.svg') center center no-repeat;
+    background: url('/assets/img/close.svg') center center no-repeat;
+  }
+}
