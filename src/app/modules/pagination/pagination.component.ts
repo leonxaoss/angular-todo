@@ -19,7 +19,6 @@ export class PaginationComponent implements OnInit, OnDestroy, OnChanges {
   currentPage = 1;
   totalPage = 0;
   pagesNumbers: number[] = [];
-  queryParams = this.activateRoute.snapshot.queryParams;
   private itemsInPageSelected = this.itemsInPage[0];
   private isObservablesAlive = true;
 
@@ -36,9 +35,9 @@ export class PaginationComponent implements OnInit, OnDestroy, OnChanges {
     this.itemsInPageSelected = this.itemsInPage[0];
     this.currentUrl = this.router.url.split('?')[0];
 
-    if (!this.queryParams.page) {
-      this.setPage(this.initialPage);
-    }
+    // if (!this.activateRoute.snapshot.queryParams) {
+    //   this.setPage(this.initialPage);
+    // }
 
     this.activateRoute.queryParams
       .pipe(takeWhile(() => this.isObservablesAlive))
@@ -66,43 +65,11 @@ export class PaginationComponent implements OnInit, OnDestroy, OnChanges {
     );
   }
 
-  calcPage(): void {
+  calcPageItems(): void {
     this.totalPage = Math.ceil(this.itemsArr.length / this.itemsInPageSelected);
     // this.pagesNumbers = new Array(this.totalPage).fill(1).map((it, i) => i + 1);
 
     this.pagesNumbers = [];
-
-    // let iteration = 0;
-    //
-    // // Prev pages from Current page
-    // for (let i = this.currentPage; i >= 1; i--) {
-    //   if (this.viewPageFromCurrent >= iteration) {
-    //     this.pagesNumbers.push(i);
-    //   } else {
-    //     break;
-    //   }
-    //
-    //   iteration++;
-    // }
-    //
-    // this.pagesNumbers.reverse();
-    //
-    // // Next pages from Current page
-    // iteration = 0;
-    //
-    // for (let i = this.currentPage; i <= this.totalPage; i++) {
-    //   if (this.viewPageFromCurrent > iteration) {
-    //     if (i === this.currentPage) {
-    //       continue;
-    //     }
-    //
-    //     this.pagesNumbers.push(i);
-    //   } else {
-    //     break;
-    //   }
-    //
-    //   iteration++;
-    // }
 
     for (let i = this.currentPage - this.viewPageFromCurrent; i <= this.currentPage + this.viewPageFromCurrent; i++) {
       if (i > 0 && i <= this.totalPage) {
@@ -112,7 +79,10 @@ export class PaginationComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   onPageChange(): void {
-    this.calcPage();
+    if (!this.activateRoute.snapshot.queryParams.page) {
+      this.setPage(this.initialPage);
+    }
+    this.calcPageItems();
     if (this.currentPage > this.totalPage) {
       this.setPage(1);
       return;
@@ -126,6 +96,12 @@ export class PaginationComponent implements OnInit, OnDestroy, OnChanges {
     const pageItems = this.itemsArr.slice(startIndex, endIndex);
 
     this.changePage.emit(pageItems);
+    // this.changePage.emit({
+    //   currentPage: this.currentPage,
+    //   startIndex,
+    //   endIndex,
+    //   pageSize: this.itemsInPageSelected,
+    // });
   }
 
   changeItemInPage(event: any): void {

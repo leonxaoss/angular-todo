@@ -17,7 +17,7 @@ export class PagComponent implements OnInit {
   }
 
   changePage(items: []): void {
-    // console.log(564, items);
-    this.itemsArrOnPage = items;
+    console.log(564, items);
+    // this.itemsArrOnPage = items;
   }
 }
