@@ -9,29 +9,28 @@
   margin: 0 2px;
   list-style: none;
   &.active{
-    a{
-      background: #0099FF;
+    .page_link{
+      background: #170d71;
     }
   }
   &.disable{
     pointer-events: none;
-    a{
+    .page_link{
       pointer-events: none;
       background: #ccc;
     }
   }
-  a{
-    display: block;
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-    cursor: pointer;
-    background: #f26b08;
-    border-radius: 5px;
-    transition: 0.2s all ease;
-    color: #ffffff;
-    font-size: 18px;
-  }
+}
+.page_link{
+  display: block;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  background: #f26b08;
+  border-radius: 5px;
+  transition: 0.2s all ease;
+  color: #ffffff;
+  font-size: 18px;
 }
 .item_page{
   display: flex;

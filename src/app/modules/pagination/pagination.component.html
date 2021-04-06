@@ -1,12 +1,26 @@
-<ul class="pagination" *ngIf="pagesNumbers.length > 1">
+<!--<ul class="pagination" *ngIf="pagesNumbers.length > 1">-->
+<ul class="pagination" *ngIf="itemsInPageSelected < itemsArr.length">
   <li class="page_item" [ngClass]="{'disable': currentPage === 1}">
     <a [routerLink]="currentUrl" [queryParams]="{ page: 1 }" queryParamsHandling="merge" class="page_link" title="first"> << </a>
   </li>
   <li class="page_item" [ngClass]="{'disable': currentPage === 1}">
     <a [routerLink]="currentUrl" [queryParams]="{ page: currentPage - 1 }" queryParamsHandling="merge" class="page_link" title="prev"> < </a>
   </li>
+  <li class="page_item" [ngClass]="{'active': currentPage === 1}" *ngIf="point">
+    <a [routerLink]="currentUrl" [queryParams]="{ page: 1 }" queryParamsHandling="merge" class="page_link" title="prev"> 1 </a>
+  </li>
+  <li class="page_item" *ngIf="currentPage > viewPageFromCurrent + 2 && point">
+    <span class="page_link"> ... </span>
+  </li>
+
   <li class="page_item" *ngFor="let item of pagesNumbers;" [ngClass]="{'active': currentPage === item}">
     <a [routerLink]="currentUrl" [queryParams]="{ page: item }" queryParamsHandling="merge" class="page_link">{{item}}</a>
+  </li>
+  <li class="page_item" *ngIf="currentPage < totalPage - viewPageFromCurrent - 1  && point">
+    <span class="page_link"> ... </span>
+  </li>
+  <li class="page_item" [ngClass]="{'active': currentPage === totalPage}" *ngIf="point">
+    <a [routerLink]="currentUrl" [queryParams]="{ page: totalPage }" queryParamsHandling="merge" class="page_link" title="prev"> {{totalPage}} </a>
   </li>
   <li class="page_item" [ngClass]="{'disable': currentPage === totalPage}">
     <a [routerLink]="currentUrl" [queryParams]="{ page: currentPage + 1 }" queryParamsHandling="merge" class="page_link" title="next"> > </a>

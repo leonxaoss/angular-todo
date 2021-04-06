@@ -9,6 +9,7 @@ export class PagComponent implements OnInit {
 
   itemsArr = new Array(113).fill(5).map((item, i) => 'Item ' + (i + 1));
   itemsArrOnPage = this.itemsArr;
+  showLoader = true;
 
   constructor() { }
 
@@ -17,7 +18,8 @@ export class PagComponent implements OnInit {
   }
 
   changePage(items: []): void {
-    console.log(564, items);
-    // this.itemsArrOnPage = items;
+    // console.log(564, items);
+    this.showLoader = false;
+    this.itemsArrOnPage = items;
   }
 }

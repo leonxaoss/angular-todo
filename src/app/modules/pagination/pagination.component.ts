@@ -9,17 +9,19 @@ import { takeWhile } from 'rxjs/operators';
 })
 export class PaginationComponent implements OnInit, OnDestroy, OnChanges {
 
-  @Input() itemsArr: any[] = [];
+  @Input() itemsArr = [];
   @Input() itemsInPage = [2, 5, 10, 50];
   @Input() initialPage = 1;
   @Input() viewPageFromCurrent = 2;
+  @Input() point = true;
+  @Input() paginationOnBackEnd = false;
   @Output() changePage = new EventEmitter<any>(true);
 
   currentUrl = '';
   currentPage = 1;
   totalPage = 0;
   pagesNumbers: number[] = [];
-  private itemsInPageSelected = this.itemsInPage[0];
+  itemsInPageSelected = this.itemsInPage[0];
   private isObservablesAlive = true;
 
   constructor(private router: Router,
@@ -43,6 +45,7 @@ export class PaginationComponent implements OnInit, OnDestroy, OnChanges {
       .pipe(takeWhile(() => this.isObservablesAlive))
       .subscribe((params: Params) => {
         this.currentPage = +params.page;
+        // this.itemsInPageSelected = +params.itemsPerPage;
         this.onPageChange();
       });
     this.onPageChange();
@@ -72,7 +75,8 @@ export class PaginationComponent implements OnInit, OnDestroy, OnChanges {
     this.pagesNumbers = [];
 
     for (let i = this.currentPage - this.viewPageFromCurrent; i <= this.currentPage + this.viewPageFromCurrent; i++) {
-      if (i > 0 && i <= this.totalPage) {
+      if (i > (this.point ? 1 : 0) && i <= (this.point ? this.totalPage - 1 : this.totalPage)) {
+      // if (i > 0 && i <= this.totalPage) {
         this.pagesNumbers.push(i);
       }
     }
@@ -101,6 +105,7 @@ export class PaginationComponent implements OnInit, OnDestroy, OnChanges {
     //   startIndex,
     //   endIndex,
     //   pageSize: this.itemsInPageSelected,
+    //   totalPage: this.totalPage
     // });
   }
 
