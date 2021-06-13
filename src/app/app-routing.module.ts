@@ -23,6 +23,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/pag/pag.module').then(mod => mod.PagModule)
   },
   {
+    path: 'builders',
+    loadChildren: () => import('./pages/builders/builders.module').then(mod => mod.BuildersModule)
+  },
+  {
     path: '**', redirectTo: 'all-contacts'
   },
   {

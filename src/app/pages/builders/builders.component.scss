@@ -1,0 +1,64 @@
+.builders{
+  color: #0B0C0C;
+  font-size: 1.5em;
+}
+
+.builder{
+  &__logo {
+    width: 8em;
+    margin-bottom: 1em;
+    path{
+      fill: #170d71;
+      &.logo_yellow{
+        fill: rgb(247, 119, 55);
+      }
+    }
+  }
+}
+
+.flat{
+  margin-bottom: 1em;
+  border-bottom: 2px solid #170d71;
+  &__block{
+    display: flex;
+    margin-bottom: 0.5em;
+  }
+  &__title{
+    display: inline-flex;
+    margin-right: 0.3em;
+  }
+  &__text{
+    margin-bottom: 0.3em;
+    &:last-child{
+      margin-bottom: 0;
+    }
+    &--bold{
+      font-weight: bold;
+    }
+    .flat__text{
+      &:nth-child(2n + 2) {
+        padding-bottom: 0.8em;
+        border-bottom: 1px solid #9d9b9a;
+      }
+      &:last-child{
+        margin-bottom: 0;
+      }
+    }
+  }
+  &__title{
+    margin-bottom: 0.5em;
+  }
+  &__form{
+    width: 15em;
+    margin-bottom: 2em;
+  }
+  &__box{
+    margin-bottom: 0.3em;
+    input{
+      border: 1px solid #0B0C0C;
+    }
+    app-plain-button{
+      font-size: 0.7em;
+    }
+  }
+}
