@@ -1,0 +1,84 @@
+.contact_box{
+  /*width: 24%;*/
+  //width: 32%;
+  width: 100%;
+  padding: 0.5em;
+  display: flex;
+  align-items: center;
+  position: relative;
+  &:hover{
+    background-color: #f5f5f5;
+  }
+}
+.box_img {
+  width: 4em;
+  height: 4em;
+  display: block;
+  flex-shrink: 0;
+  border: 1px solid #170d71;
+  svg{
+    max-width: 90%;
+    margin: 0 auto;
+    transform: translateY(18%);
+    fill: #9d9b9a;
+  }
+}
+
+.contact_description{
+  margin-left: 1em;
+  flex-grow: 1;
+  display: flex;
+  h4{
+    color: #170d71;
+    font-size: 1.5em;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 57%;
+    margin: 0 1em 0 0;
+  }
+  a{
+    color: #170d71;
+    text-decoration: none;
+    font-size: 1.2em;
+    display: block;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
+
+.more_contact{
+  display: flex;
+  flex-shrink: 0;
+}
+
+.icon_btn{
+  width: 2em;
+  height: 2em;
+  padding: 0.2em;
+  border-radius: 2px;
+  background: #0B0C0C;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 0.3em;
+  &:last-child{
+    margin-right: 0;
+  }
+  svg{
+    fill: #FFFFFF;
+    max-width: 80%;
+  }
+  &--edit{
+    background: #170d71;
+  }
+  &--view{
+    background: #170d71;
+  }
+  &--delete{
+    background: #d01f25;
+  }
+}
