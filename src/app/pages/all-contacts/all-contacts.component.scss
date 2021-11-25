@@ -1,112 +1,44 @@
 .contact_none {
   color: #ffffff;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
+  display: flex;
+  justify-content: space-between;
   h2{
-    margin-bottom: 0.3em;
     color: #170d71;
     font-size: 2em;
     font-weight: 500;
+    margin-bottom: 0;
+  }
+  .btn{
+    width: 10em;
   }
 }
 
 .contact_block{
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
+  //display: flex;
+  //align-items: center;
+  //flex-wrap: wrap;
 }
 
-.contact_box{
-  /*width: 24%;*/
-  width: 32%;
-  padding: 0.5em;
-  margin: 0 1% 1em 0;
-  display: flex;
-  align-items: center;
-  position: relative;
-  border: 1px solid #170d71;
-  border-radius: 0.2em;
-  .box_img {
-    display: block;
-    flex-shrink: 0;
-    border-color: #170d71;
+.search{
+  margin-bottom: 1em;
+}
+
+.input_search{
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0.5em 0.1em rgba(0, 0, 0, 0.1);
+  transition: 0.2s all ease-in-out;
+  font-size: 1em;
+  &:focus{
+    box-shadow: 0 0 1em 0.1em rgba(0, 0, 0, 0.3);
   }
 }
 
-.contact_description{
-  margin-left: 1em;
-  word-break: break-word;
-  h4{
-    color: #170d71;
-    font-size: 1.8em;
-    margin-bottom: 0.1em;
-    text-overflow: ellipsis;
-  }
-  a{
-    color: #170d71;
-    text-decoration: none;
-    font-size: 1.2em;
-    display: block;
-    &:hover{
-      text-decoration: underline;
-    }
-  }
-}
-
-.more_contact{
-  position: absolute;
-  right: 0;
-  top: 0;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 0.5em 0.5em;
-  border-radius: 0.15em;
-  color: #ffffff;
-  display: flex;
-  cursor: pointer;
-  z-index: 2;
-}
-.more_touch{
-  width: 3px;
-  height: 3px;
-  background: #ffffff;
-  border-radius: 50%;
-  margin: 2px;
-  z-index: 1;
-}
-
-.contact_nav{
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 1.5em;
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 0.2em;
-  opacity: 0;
-  visibility: hidden;
-  transition: 0.3s all ease-in-out;
-  color: #ffffff;
-}
-.more_contact:hover .contact_nav{
-  opacity: 1;
-  visibility: visible;
-}
-
-.contact_btn{
-  width: auto;
+app-contact-card{
   display: block;
-  padding: 0;
-  margin-bottom: 0.25em;
-  background: none;
-  border-radius: 0;
-  border: none;
-  font-size: 1.1em;
-  color: #fff;
-  cursor: pointer;
-  &:hover{
-    border-radius: 0;
-    border: none;
-    text-decoration: underline;
-  }
+  margin-bottom: 0.1em;
 }
+
 .filter{
   margin-bottom: 2em;
   h3{

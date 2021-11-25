@@ -6,6 +6,7 @@
   display: flex;
   align-items: center;
   position: relative;
+  transition: 0.2s all ease;
   &:hover{
     background-color: #f5f5f5;
   }

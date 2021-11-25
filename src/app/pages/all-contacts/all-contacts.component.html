@@ -1,54 +1,38 @@
 <div class="contact_none notebook_content" >
-  <h2>{{!contactsModel.length ? 'Контактів поки що немає' : 'Контакти'}}</h2>
-  <p *ngIf="!contactsModel.length">Скористайтесь кнопкою 'Додати контакт'</p>
+  <div>
+    <h2>{{!contactsModel.length ? 'There\'s no contacts' : 'Contacts'}}</h2>
+    <p *ngIf="!contactsModel.length">Скористайтесь кнопкою 'Додати контакт'</p>
+  </div>
+  <a class="btn" routerLink="/add-contacts">
+    <app-plain-button classes="btn--blue">Add Contact</app-plain-button>
+  </a>
 </div>
 
-<div class="filter">
-  <h3>Групи</h3>
-  <div class="filter_block">
-    <label class="filter_box" *ngFor="let item of groupsArrView">
-      <input type="checkbox" (change)="changeFilter($event)" value="{{item}}">
-      <label class="label_title">{{item}}</label>
-    </label>
-  </div>
+<div class="search">
+  <input type="search" autocomplete="off" placeholder="Search" class="input_search">
 </div>
+
+<!--<div class="filter">-->
+<!--  <h3>Групи</h3>-->
+<!--  <div class="filter_block">-->
+<!--    <label class="filter_box" *ngFor="let item of groupsArrView">-->
+<!--      <input type="checkbox" (change)="changeFilter($event)" value="{{item}}">-->
+<!--      <label class="label_title">{{item}}</label>-->
+<!--    </label>-->
+<!--  </div>-->
+<!--</div>-->
 <div class="contact_block">
 <!--  <div class="contact_box contact_id" *ngFor="let user of contactsModel | filter:groupsArr">-->
-  <div class="contact_box contact_id" *ngFor="let user of contactsModelHelp">
-    <div class="box_img">
-      <img *ngIf="user.image" src="{{user.image}}" alt="">
-    </div>
-    <div class="contact_description">
-      <h4>
-        <span class="name">
-          {{user.name}}
-        </span>
-        <span class="surname">
-          {{user.lastName}}
-        </span>
-      </h4>
-      <a href="tel:{{user.contacts[0]}}">
-        +380 {{user.contacts[0]}}
-      </a>
-    </div>
-    <div class="more_contact">
-      <span class="more_touch"></span>
-      <span class="more_touch"></span>
-      <span class="more_touch"></span>
-      <div class="contact_nav">
-        <a routerLink="/details-contact/{{user.id}}" class="contact_btn contact_btn--show"><span>Переглянути</span></a>
-        <a routerLink="/edit-contact/{{user.id}}" class="contact_btn contact_btn--edit"><span>Редагувати</span></a>
-        <a class="contact_btn contact_btn--delete" (click)="deleteBlock(user.id)"><span>Видалити</span></a>
-      </div>
-    </div>
-  </div>
+  <ng-container *ngFor="let user of contactsModelHelp">
+    <app-contact-card [user]="user" (newDeleteEvent)="deleteBlock($event)"></app-contact-card>
+  </ng-container>
 </div>
 
-<app-pagination
-  [itemsInPage]="[2, 5, 10]"
-  [itemsArr]="contactsModelFilter"
-  (changePage)="changePage($event)"
-  [point]="false"
-></app-pagination>
+<!--<app-pagination-->
+<!--  [itemsInPage]="[2, 5, 10]"-->
+<!--  [itemsArr]="contactsModelFilter"-->
+<!--  (changePage)="changePage($event)"-->
+<!--  [point]="false"-->
+<!--&gt;</app-pagination>-->
 
 <app-loader [local]="true" [showLoader]="showLoader"></app-loader>
