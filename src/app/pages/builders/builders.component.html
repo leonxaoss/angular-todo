@@ -24,15 +24,18 @@
     Добавити квартиру
   </div>
 
-  <form class="flat__form" >
+  <form class="flat__form" [formGroup]="form" (ngSubmit)="addFlat()">
     <div class="flat__box">
-      <input type="number">
+      <label>Кількість кімнат</label>
+      <input type="number" formControlName="rooms">
     </div>
     <div class="flat__box">
-      <input type="number">
+      <label>Площа м<sup>2</sup></label>
+      <input type="number" formControlName="square">
     </div>
     <div class="flat__box">
-      <input type="number">
+      <label>Ціна за 1м<sup>2</sup></label>
+      <input type="number" formControlName="price1square">
     </div>
     <div class="flat__box">
       <app-plain-button classes="btn--blue" [type]="'submit'">

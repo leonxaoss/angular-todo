@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FlatInterface } from './shared/interfaces/flat.interface';
 import { FlatEnum } from './shared/enums/flat.enum';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-builders',
@@ -51,9 +52,15 @@ export class BuildersComponent implements OnInit {
     }
   ];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+              private alertService: AlertService) { }
 
   ngOnInit(): void {
+  }
+
+  addFlat(): void {
+    this.flats.push(this.form.value);
+    this.alertService.showMessage({text: 'Квартира добавлена', type: 'success'});
   }
 
   calcPriceForFlat(flat: FlatInterface, percentPrice = 0): number {
