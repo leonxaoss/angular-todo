@@ -8,6 +8,8 @@
   background: #565462;
   position: relative;
   padding: 2em;
+  z-index: 1;
+  overflow: hidden;
 }
 .notebook_container{
   min-height: 100vh;
@@ -15,6 +17,7 @@
   padding: 2em 1.5em;
   position: relative;
   background: #ffffff;
+  overflow: hidden;
 }
 app-sidebar{
   display: block;

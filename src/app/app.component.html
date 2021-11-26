@@ -3,7 +3,9 @@
     <app-sidebar></app-sidebar>
   </div>
   <div class="notebook_container">
-    <router-outlet></router-outlet>
+    <div [@routeAnimations]="prepareRoute(outlet)">
+      <router-outlet #outlet="outlet"></router-outlet>
+    </div>
   </div>
 </div>
 <app-alert></app-alert>

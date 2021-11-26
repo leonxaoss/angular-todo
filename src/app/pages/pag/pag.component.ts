@@ -14,7 +14,7 @@ export class PagComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-
+    this.showLoader = false;
   }
 
   changePage(items: []): void {
