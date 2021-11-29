@@ -3,10 +3,10 @@
     {{item}}
   </div>
 </div>
-<!--<app-pagination-->
-<!--  [itemsInPage]="[10, 15, 20, 27, 100]"-->
-<!--  [itemsArr]="itemsArr"-->
-<!--  (changePage)="changePage($event)"-->
-<!--  [point]="true"-->
-<!--&gt;</app-pagination>-->
+<app-pagination
+  [itemsInPage]="[10, 15, 20, 27, 100]"
+  [itemsArr]="itemsArr"
+  (changePage)="changePage($event)"
+  [point]="true"
+></app-pagination>
 <app-loader [local]="true" [showLoader]="showLoader"></app-loader>

@@ -28,11 +28,11 @@
   </ng-container>
 </div>
 
-<!--<app-pagination-->
-<!--  [itemsInPage]="[2, 5, 10]"-->
-<!--  [itemsArr]="contactsModelFilter"-->
-<!--  (changePage)="changePage($event)"-->
-<!--  [point]="false"-->
-<!--&gt;</app-pagination>-->
+<app-pagination
+  [itemsInPage]="[2, 5, 10]"
+  [itemsArr]="contactsModelFilter"
+  (changePage)="changePage($event)"
+  [point]="false"
+></app-pagination>
 
 <app-loader [local]="true" [showLoader]="showLoader"></app-loader>

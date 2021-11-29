@@ -9,7 +9,7 @@ import { takeWhile } from 'rxjs/operators';
 })
 export class PaginationComponent implements OnInit, OnDestroy, OnChanges {
 
-  @Input() itemsArr = [];
+  @Input() itemsArr: any[] = [];
   @Input() itemsInPage = [2, 5, 10, 50];
   @Input() initialPage = 1;
   @Input() viewPageFromCurrent = 2;
